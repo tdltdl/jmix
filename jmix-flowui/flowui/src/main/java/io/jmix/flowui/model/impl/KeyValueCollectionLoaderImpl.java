@@ -25,6 +25,8 @@ import io.jmix.core.common.event.Subscription;
 import io.jmix.core.entity.KeyValueEntity;
 import io.jmix.core.metamodel.model.MetaProperty;
 import io.jmix.core.querycondition.Condition;
+import io.jmix.flowui.RequiresChanges;
+import io.jmix.flowui.SameAsUi;
 import io.jmix.flowui.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -37,6 +39,8 @@ import java.util.function.Function;
 /**
  *
  */
+@SameAsUi
+@RequiresChanges
 public class KeyValueCollectionLoaderImpl implements KeyValueCollectionLoader {
 
     @Autowired

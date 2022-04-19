@@ -17,6 +17,8 @@
 package io.jmix.flowui.model;
 
 import io.jmix.core.querycondition.Condition;
+import io.jmix.flowui.RequiresChanges;
+import io.jmix.flowui.SameAsUi;
 
 import javax.annotation.Nullable;
 import java.io.Serializable;
@@ -29,6 +31,8 @@ import java.util.Map;
  * @see InstanceContainer
  * @see CollectionContainer
  */
+@RequiresChanges
+@SameAsUi
 public interface DataLoader {
 
     /**

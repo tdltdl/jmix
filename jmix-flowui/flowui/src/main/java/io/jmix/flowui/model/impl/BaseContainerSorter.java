@@ -20,6 +20,8 @@ import io.jmix.core.Sort;
 import io.jmix.core.entity.EntityValues;
 import io.jmix.core.metamodel.model.MetaClass;
 import io.jmix.core.metamodel.model.MetaPropertyPath;
+import io.jmix.flowui.RequiresChanges;
+import io.jmix.flowui.SameAsUi;
 import io.jmix.flowui.model.CollectionContainer;
 import io.jmix.flowui.model.Sorter;
 import org.springframework.beans.factory.BeanFactory;
@@ -31,6 +33,8 @@ import java.util.List;
 /**
  * Base implementation of sorting collection containers.
  */
+@SameAsUi
+@RequiresChanges
 public abstract class BaseContainerSorter implements Sorter {
 
     protected BeanFactory beanFactory;

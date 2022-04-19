@@ -16,6 +16,8 @@
 
 package io.jmix.flowui.model;
 
+import io.jmix.flowui.RequiresChanges;
+import io.jmix.flowui.SameAsUi;
 import io.jmix.flowui.model.impl.CollectionContainerSorter;
 import io.jmix.flowui.model.impl.CollectionPropertyContainerSorter;
 import org.springframework.beans.factory.BeanFactory;
@@ -27,6 +29,8 @@ import javax.annotation.Nullable;
 /**
  * Factory bean for sorters.
  */
+@SameAsUi
+@RequiresChanges
 @Component("ui_SorterFactory")
 public class SorterFactory {
 

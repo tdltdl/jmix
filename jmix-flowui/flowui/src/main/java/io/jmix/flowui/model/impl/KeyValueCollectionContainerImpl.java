@@ -20,6 +20,8 @@ import io.jmix.core.entity.KeyValueEntity;
 import io.jmix.core.impl.keyvalue.KeyValueMetaClass;
 import io.jmix.core.impl.keyvalue.KeyValueMetaPropertyBuilder;
 import io.jmix.core.metamodel.datatype.Datatype;
+import io.jmix.flowui.RequiresChanges;
+import io.jmix.flowui.SameAsUi;
 import io.jmix.flowui.model.CollectionChangeType;
 import io.jmix.flowui.model.KeyValueCollectionContainer;
 import io.jmix.flowui.model.KeyValueContainer;
@@ -29,6 +31,8 @@ import javax.annotation.Nullable;
 import java.util.Collection;
 import java.util.List;
 
+@SameAsUi
+@RequiresChanges
 public class KeyValueCollectionContainerImpl
         extends CollectionContainerImpl<KeyValueEntity> implements KeyValueCollectionContainer {
 

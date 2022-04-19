@@ -17,7 +17,9 @@
 package io.jmix.flowui.model.impl;
 
 import io.jmix.core.entity.EntityValues;
+import io.jmix.flowui.SameAsUi;
 
+@SameAsUi
 public class IndexKey {
 
     private Object key;

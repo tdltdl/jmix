@@ -17,7 +17,9 @@
 package io.jmix.flowui.model.impl;
 
 import io.jmix.core.entity.EntityPropertyChangeEvent;
+import io.jmix.flowui.SameAsUi;
 
+@SameAsUi
 public interface ItemPropertyChangeNotifier {
 
     void itemPropertyChanged(EntityPropertyChangeEvent e);

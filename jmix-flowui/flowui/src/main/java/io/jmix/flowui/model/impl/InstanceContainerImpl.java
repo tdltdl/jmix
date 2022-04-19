@@ -27,6 +27,8 @@ import io.jmix.core.entity.EntityPropertyChangeListener;
 import io.jmix.core.entity.EntitySystemAccess;
 import io.jmix.core.entity.HasInstanceMetaClass;
 import io.jmix.core.metamodel.model.MetaClass;
+import io.jmix.flowui.RequiresChanges;
+import io.jmix.flowui.SameAsUi;
 import io.jmix.flowui.model.DataLoader;
 import io.jmix.flowui.model.HasLoader;
 import io.jmix.flowui.model.InstanceContainer;
@@ -40,6 +42,8 @@ import java.util.function.Consumer;
 /**
  *
  */
+@SameAsUi
+@RequiresChanges
 public class InstanceContainerImpl<E> implements InstanceContainer<E>, HasLoader, ItemPropertyChangeNotifier {
 
     private static final Logger log = LoggerFactory.getLogger(InstanceContainerImpl.class);

@@ -21,6 +21,8 @@ import io.jmix.core.Metadata;
 import io.jmix.core.Stores;
 import io.jmix.core.entity.EntityValues;
 import io.jmix.core.metamodel.model.MetaClass;
+import io.jmix.flowui.RequiresChanges;
+import io.jmix.flowui.SameAsUi;
 import io.jmix.flowui.model.impl.*;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,9 +34,12 @@ import java.util.Collection;
 /**
  * Factory bean for data API components.
  */
+@SameAsUi
+@RequiresChanges
 @Component("ui_DataComponents")
 public class DataComponents {
 
+    // TODO: gg, constructor injection
     @Autowired
     protected AutowireCapableBeanFactory beanFactory;
 

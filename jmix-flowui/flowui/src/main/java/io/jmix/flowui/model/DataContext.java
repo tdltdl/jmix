@@ -19,6 +19,7 @@ package io.jmix.flowui.model;
 import io.jmix.core.EntitySet;
 import io.jmix.core.SaveContext;
 import io.jmix.core.common.event.Subscription;
+import io.jmix.flowui.SameAsUi;
 
 import javax.annotation.CheckReturnValue;
 import javax.annotation.Nullable;
@@ -35,7 +36,8 @@ import java.util.function.Function;
  * where and how many times it is used in object graphs.
  */
 @SuppressWarnings("rawtypes")
-//@InstallSubject("commitDelegate")
+@SameAsUi
+@InstallSubject("commitDelegate")
 public interface DataContext {
 
     /**

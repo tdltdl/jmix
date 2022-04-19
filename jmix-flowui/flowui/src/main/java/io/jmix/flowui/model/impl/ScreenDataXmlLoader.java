@@ -26,6 +26,8 @@ import io.jmix.core.metamodel.datatype.DatatypeRegistry;
 import io.jmix.core.metamodel.model.MetaProperty;
 import io.jmix.core.querycondition.Condition;
 import io.jmix.core.querycondition.ConditionXmlLoader;
+import io.jmix.flowui.RequiresChanges;
+import io.jmix.flowui.SameAsUi;
 import io.jmix.flowui.model.*;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.dom4j.Element;
@@ -36,7 +38,9 @@ import org.springframework.stereotype.Component;
 import javax.annotation.Nullable;
 import java.text.ParseException;
 
-@Component("ui_ScreenDataXmlLoader")
+@RequiresChanges
+@SameAsUi
+@Component("flowui_ScreenDataXmlLoader")
 public class ScreenDataXmlLoader {
 
     @Autowired

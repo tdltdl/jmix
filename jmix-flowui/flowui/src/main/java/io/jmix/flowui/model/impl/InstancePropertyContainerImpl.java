@@ -17,9 +17,13 @@
 package io.jmix.flowui.model.impl;
 
 import io.jmix.core.metamodel.model.MetaClass;
+import io.jmix.flowui.RequiresChanges;
+import io.jmix.flowui.SameAsUi;
 import io.jmix.flowui.model.InstanceContainer;
 import io.jmix.flowui.model.InstancePropertyContainer;
 
+@SameAsUi
+@RequiresChanges
 public class InstancePropertyContainerImpl<E>
         extends InstanceContainerImpl<E> implements InstancePropertyContainer<E> {
 

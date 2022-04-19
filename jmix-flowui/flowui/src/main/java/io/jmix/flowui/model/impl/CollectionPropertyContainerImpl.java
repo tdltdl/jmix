@@ -20,12 +20,16 @@ import io.jmix.core.entity.EntityPropertyChangeEvent;
 import io.jmix.core.entity.EntityValues;
 import io.jmix.core.metamodel.model.MetaClass;
 import io.jmix.core.metamodel.model.MetaProperty;
+import io.jmix.flowui.RequiresChanges;
+import io.jmix.flowui.SameAsUi;
 import io.jmix.flowui.model.CollectionPropertyContainer;
 import io.jmix.flowui.model.InstanceContainer;
 
 import javax.annotation.Nullable;
 import java.util.*;
 
+@SameAsUi
+@RequiresChanges
 public class CollectionPropertyContainerImpl<E>
         extends CollectionContainerImpl<E> implements CollectionPropertyContainer<E> {
 

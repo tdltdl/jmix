@@ -16,9 +16,14 @@
 
 package io.jmix.flowui.model;
 
+import io.jmix.flowui.RequiresChanges;
+import io.jmix.flowui.SameAsUi;
+
 /**
  * Interface to be implemented by containers that work with entities that are properties of other entities.
  */
+@RequiresChanges
+@SameAsUi
 public interface Nested {
 
     /**

@@ -16,12 +16,17 @@
 
 package io.jmix.flowui.model;
 
+import io.jmix.flowui.RequiresChanges;
+import io.jmix.flowui.SameAsUi;
+
 import javax.annotation.Nullable;
 import java.util.Set;
 
 /**
  * Interface defining methods for interacting with data API elements of a screen.
  */
+@RequiresChanges
+@SameAsUi
 public interface ScreenData {
 
     /**

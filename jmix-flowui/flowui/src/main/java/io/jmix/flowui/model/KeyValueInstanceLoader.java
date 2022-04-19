@@ -19,6 +19,7 @@ package io.jmix.flowui.model;
 import io.jmix.core.ValueLoadContext;
 import io.jmix.core.common.event.Subscription;
 import io.jmix.core.entity.KeyValueEntity;
+import io.jmix.flowui.SameAsUi;
 
 import javax.annotation.Nullable;
 import java.util.EventObject;
@@ -28,7 +29,8 @@ import java.util.function.Function;
 /**
  * Loads a single instance of {@link KeyValueEntity}.
  */
-//@InstallSubject("loadDelegate")
+@SameAsUi
+@InstallSubject("loadDelegate")
 public interface KeyValueInstanceLoader extends DataLoader {
 
     /**
@@ -95,7 +97,6 @@ public interface KeyValueInstanceLoader extends DataLoader {
         /**
          * The data loader which sent the event.
          */
-        @SuppressWarnings("unchecked")
         @Override
         public KeyValueInstanceLoader getSource() {
             return (KeyValueInstanceLoader) super.getSource();

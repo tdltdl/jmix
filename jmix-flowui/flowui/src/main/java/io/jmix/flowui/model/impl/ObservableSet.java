@@ -17,6 +17,7 @@
 package io.jmix.flowui.model.impl;
 
 import com.google.common.collect.ForwardingSet;
+import io.jmix.flowui.SameAsUi;
 import io.jmix.flowui.model.CollectionChangeType;
 
 import java.io.ObjectStreamException;
@@ -27,6 +28,7 @@ import java.util.Iterator;
 import java.util.Set;
 import java.util.function.BiConsumer;
 
+@SameAsUi
 @SuppressWarnings("NullableProblems")
 public class ObservableSet<T> extends ForwardingSet<T> implements Serializable {
 
@@ -41,6 +43,7 @@ public class ObservableSet<T> extends ForwardingSet<T> implements Serializable {
     }
 
     private Object writeReplace() throws ObjectStreamException {
+        // TODO: gg, add type
         Set result = delegate;
         while (result instanceof ObservableSet) {
             result = ((ObservableSet) result).delegate;

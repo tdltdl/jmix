@@ -24,6 +24,8 @@ import io.jmix.core.entity.EntitySystemAccess;
 import io.jmix.core.entity.EntityValues;
 import io.jmix.core.metamodel.model.MetaClass;
 import io.jmix.core.metamodel.model.MetaProperty;
+import io.jmix.flowui.RequiresChanges;
+import io.jmix.flowui.SameAsUi;
 import io.jmix.flowui.model.CollectionChangeType;
 import io.jmix.flowui.model.CollectionContainer;
 import io.jmix.flowui.model.Sorter;
@@ -40,6 +42,8 @@ import static io.jmix.core.common.util.Preconditions.checkNotNullArgument;
 /**
  *
  */
+@SameAsUi
+@RequiresChanges
 public class CollectionContainerImpl<E>
         extends InstanceContainerImpl<E> implements CollectionContainer<E> {
 

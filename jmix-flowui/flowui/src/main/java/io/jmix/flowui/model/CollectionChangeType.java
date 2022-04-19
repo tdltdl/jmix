@@ -16,9 +16,12 @@
 
 package io.jmix.flowui.model;
 
+import io.jmix.flowui.SameAsUi;
+
 /**
  * Type of a collection change event.
  */
+@SameAsUi
 public enum CollectionChangeType {
 
     /**

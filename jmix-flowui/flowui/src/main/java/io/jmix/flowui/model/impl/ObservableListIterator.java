@@ -17,6 +17,7 @@
 package io.jmix.flowui.model.impl;
 
 import com.google.common.collect.ForwardingListIterator;
+import io.jmix.flowui.SameAsUi;
 import io.jmix.flowui.model.CollectionChangeType;
 
 import javax.annotation.Nullable;
@@ -29,7 +30,7 @@ import java.util.function.Consumer;
 /**
  *
  */
-@SuppressWarnings("NullableProblems")
+@SameAsUi
 class ObservableListIterator<T> extends ForwardingListIterator<T> {
 
     private ListIterator<T> delegate;

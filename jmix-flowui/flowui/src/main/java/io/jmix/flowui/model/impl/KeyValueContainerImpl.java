@@ -21,11 +21,15 @@ import io.jmix.core.impl.keyvalue.KeyValueMetaClass;
 import io.jmix.core.impl.keyvalue.KeyValueMetaPropertyBuilder;
 import io.jmix.core.metamodel.datatype.Datatype;
 import io.jmix.core.metamodel.model.MetaClass;
+import io.jmix.flowui.RequiresChanges;
+import io.jmix.flowui.SameAsUi;
 import io.jmix.flowui.model.KeyValueContainer;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.Nullable;
 
+@SameAsUi
+@RequiresChanges
 public class KeyValueContainerImpl extends InstanceContainerImpl<KeyValueEntity> implements KeyValueContainer {
 
     private String idName;

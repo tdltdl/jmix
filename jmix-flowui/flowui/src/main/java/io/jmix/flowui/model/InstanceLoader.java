@@ -19,6 +19,7 @@ package io.jmix.flowui.model;
 import io.jmix.core.FetchPlan;
 import io.jmix.core.LoadContext;
 import io.jmix.core.common.event.Subscription;
+import io.jmix.flowui.SameAsUi;
 
 import javax.annotation.Nullable;
 import java.util.EventObject;
@@ -28,7 +29,8 @@ import java.util.function.Function;
 /**
  * Loader of a single entity instance.
  */
-//@InstallSubject("loadDelegate")
+@SameAsUi
+@InstallSubject("loadDelegate")
 public interface InstanceLoader<E> extends DataLoader {
 
     /**

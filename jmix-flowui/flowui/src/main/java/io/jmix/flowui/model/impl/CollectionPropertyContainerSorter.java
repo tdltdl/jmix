@@ -16,6 +16,8 @@
 
 package io.jmix.flowui.model.impl;
 
+import io.jmix.flowui.RequiresChanges;
+import io.jmix.flowui.SameAsUi;
 import io.jmix.flowui.model.CollectionPropertyContainer;
 import org.springframework.beans.factory.BeanFactory;
 
@@ -24,6 +26,8 @@ import java.util.List;
 /**
  * Standard implementation of sorting {@link CollectionPropertyContainer}s.
  */
+@SameAsUi
+@RequiresChanges
 public class CollectionPropertyContainerSorter extends BaseContainerSorter {
 
     public CollectionPropertyContainerSorter(CollectionPropertyContainer container, BeanFactory beanFactory) {

@@ -16,24 +16,28 @@
 
 package io.jmix.flowui.model.impl;
 
+import io.jmix.flowui.RequiresChanges;
+import io.jmix.flowui.SameAsUi;
 import io.jmix.flowui.model.*;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
 
-@Component("ui_ScreenData")
+@RequiresChanges
+@SameAsUi
+@Component("flowui_ScreenData")
 @Scope(BeanDefinition.SCOPE_PROTOTYPE)
 public class ScreenDataImpl implements ScreenData {
 
     protected DataContext dataContext;
 
-    protected Map<String, InstanceContainer> containers = new HashMap<>();
+    protected Map<String, InstanceContainer> containers = new LinkedHashMap<>();
 
-    protected Map<String, DataLoader> loaders = new HashMap<>();
+    protected Map<String, DataLoader> loaders = new LinkedHashMap<>();
 
     @Override
     public DataContext getDataContext() {

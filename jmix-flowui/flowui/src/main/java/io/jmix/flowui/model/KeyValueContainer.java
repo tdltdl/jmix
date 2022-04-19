@@ -18,12 +18,14 @@ package io.jmix.flowui.model;
 
 import io.jmix.core.entity.KeyValueEntity;
 import io.jmix.core.metamodel.datatype.Datatype;
+import io.jmix.flowui.SameAsUi;
 
 import javax.annotation.Nullable;
 
 /**
  * Container for a single {@code KeyValueEntity} instance.
  */
+@SameAsUi
 public interface KeyValueContainer extends InstanceContainer<KeyValueEntity> {
 
     /**
