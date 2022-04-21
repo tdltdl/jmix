@@ -2,10 +2,10 @@ package io.jmix.flowui.component.delegate;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.data.provider.HasListDataView;
-import io.jmix.flowui.binder.binding.ListOptionsBinding.ListOptionsTarget;
-import io.jmix.flowui.binder.binding.OptionsBinding;
-import io.jmix.flowui.binder.binding.impl.ListOptionsBindingImpl;
-import io.jmix.flowui.binder.data.Options;
+import io.jmix.flowui.data.binding.ListOptionsBinding.ListOptionsTarget;
+import io.jmix.flowui.data.binding.OptionsBinding;
+import io.jmix.flowui.data.binding.impl.ListOptionsBindingImpl;
+import io.jmix.flowui.data.Options;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.Scope;
 

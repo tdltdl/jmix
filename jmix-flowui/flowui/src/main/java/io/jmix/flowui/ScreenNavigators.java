@@ -1,7 +1,7 @@
 package io.jmix.flowui;
 
-import io.jmix.flowui.binder.data.DataUnit;
-import io.jmix.flowui.binder.data.HasType;
+import io.jmix.flowui.data.DataUnit;
+import io.jmix.flowui.data.HasType;
 import io.jmix.flowui.component.ListDataComponent;
 import io.jmix.flowui.screen.Screen;
 import io.jmix.flowui.screen.navigation.*;

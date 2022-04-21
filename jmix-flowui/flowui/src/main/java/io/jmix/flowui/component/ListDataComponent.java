@@ -1,6 +1,6 @@
 package io.jmix.flowui.component;
 
-import io.jmix.flowui.binder.data.DataUnit;
+import io.jmix.flowui.data.DataUnit;
 
 import javax.annotation.Nullable;
 import java.util.Collection;

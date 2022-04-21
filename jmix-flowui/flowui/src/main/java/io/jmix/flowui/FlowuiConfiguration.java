@@ -17,7 +17,6 @@
 package io.jmix.flowui;
 
 import io.jmix.core.CoreConfiguration;
-import io.jmix.core.JmixModules;
 import io.jmix.core.annotation.JmixModule;
 import io.jmix.core.impl.scanning.AnnotationScanMetadataReaderFactory;
 import io.jmix.flowui.sys.ActionsConfiguration;

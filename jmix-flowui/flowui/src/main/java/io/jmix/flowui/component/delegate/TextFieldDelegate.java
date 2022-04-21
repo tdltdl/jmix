@@ -2,10 +2,10 @@ package io.jmix.flowui.component.delegate;
 
 import io.jmix.core.metamodel.model.MetaProperty;
 import io.jmix.core.metamodel.model.MetaPropertyPath;
-import io.jmix.flowui.binder.binding.impl.AbstractValueBinding;
-import io.jmix.flowui.binder.binding.impl.FieldValueBinding;
-import io.jmix.flowui.binder.data.EntityValueSource;
-import io.jmix.flowui.binder.data.ValueSource;
+import io.jmix.flowui.data.binding.impl.AbstractValueBinding;
+import io.jmix.flowui.data.binding.impl.FieldValueBinding;
+import io.jmix.flowui.data.EntityValueSource;
+import io.jmix.flowui.data.ValueSource;
 import io.jmix.flowui.component.textfield.TypedTextField;
 import io.jmix.flowui.component.validation.RegexpValidator;
 import io.jmix.flowui.component.validation.SizeValidator;

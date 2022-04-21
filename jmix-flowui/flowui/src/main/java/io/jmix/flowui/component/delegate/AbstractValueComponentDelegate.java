@@ -2,9 +2,9 @@ package io.jmix.flowui.component.delegate;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.HasValue;
-import io.jmix.flowui.binder.binding.ValueBinding;
-import io.jmix.flowui.binder.binding.impl.AbstractValueBinding;
-import io.jmix.flowui.binder.data.ValueSource;
+import io.jmix.flowui.data.binding.ValueBinding;
+import io.jmix.flowui.data.binding.impl.AbstractValueBinding;
+import io.jmix.flowui.data.ValueSource;
 
 import javax.annotation.Nullable;
 

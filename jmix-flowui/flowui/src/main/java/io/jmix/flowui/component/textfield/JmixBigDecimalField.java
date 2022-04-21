@@ -2,8 +2,8 @@ package io.jmix.flowui.component.textfield;
 
 import com.vaadin.flow.component.textfield.BigDecimalField;
 import com.vaadin.flow.shared.Registration;
-import io.jmix.flowui.binder.data.SupportsValueSource;
-import io.jmix.flowui.binder.data.ValueSource;
+import io.jmix.flowui.data.SupportsValueSource;
+import io.jmix.flowui.data.ValueSource;
 import io.jmix.flowui.component.HasRequired;
 import io.jmix.flowui.component.SupportsValidation;
 import io.jmix.flowui.component.delegate.FieldDelegate;

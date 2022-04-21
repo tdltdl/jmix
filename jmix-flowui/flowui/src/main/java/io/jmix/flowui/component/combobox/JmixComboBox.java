@@ -2,10 +2,10 @@ package io.jmix.flowui.component.combobox;
 
 import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.shared.Registration;
-import io.jmix.flowui.binder.data.Options;
-import io.jmix.flowui.binder.data.SupportsListOptions;
-import io.jmix.flowui.binder.data.SupportsValueSource;
-import io.jmix.flowui.binder.data.ValueSource;
+import io.jmix.flowui.data.Options;
+import io.jmix.flowui.data.SupportsListOptions;
+import io.jmix.flowui.data.SupportsValueSource;
+import io.jmix.flowui.data.ValueSource;
 import io.jmix.flowui.component.HasRequired;
 import io.jmix.flowui.component.HasTitle;
 import io.jmix.flowui.component.SupportsValidation;

@@ -9,10 +9,10 @@ import io.jmix.core.common.util.Preconditions;
 import io.jmix.core.entity.EntityValues;
 import io.jmix.core.metamodel.model.MetaClass;
 import io.jmix.core.metamodel.model.MetaPropertyPath;
-import io.jmix.flowui.binder.binding.JmixBinding;
-import io.jmix.flowui.binder.data.BindingState;
-import io.jmix.flowui.binder.data.ContainerDataUnit;
-import io.jmix.flowui.binder.data.grid.EntityGridDataItems;
+import io.jmix.flowui.data.binding.JmixBinding;
+import io.jmix.flowui.data.BindingState;
+import io.jmix.flowui.data.ContainerDataUnit;
+import io.jmix.flowui.data.grid.EntityGridDataItems;
 import io.jmix.flowui.model.CollectionContainer;
 import io.jmix.flowui.model.InstanceContainer;
 

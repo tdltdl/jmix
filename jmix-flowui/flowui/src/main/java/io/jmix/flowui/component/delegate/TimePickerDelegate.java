@@ -1,8 +1,8 @@
 package io.jmix.flowui.component.delegate;
 
-import io.jmix.flowui.binder.binding.impl.AbstractValueBinding;
-import io.jmix.flowui.binder.binding.impl.FieldValueBinding;
-import io.jmix.flowui.binder.data.ValueSource;
+import io.jmix.flowui.data.binding.impl.AbstractValueBinding;
+import io.jmix.flowui.data.binding.impl.FieldValueBinding;
+import io.jmix.flowui.data.ValueSource;
 import io.jmix.flowui.component.timepicker.TypedTimePicker;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.Scope;

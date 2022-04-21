@@ -13,7 +13,7 @@ import io.jmix.flowui.action.ActionType;
 import io.jmix.flowui.action.AdjustWhenScreenReadOnly;
 import io.jmix.flowui.action.ExecutableAction;
 import io.jmix.flowui.action.ScreenOpeningAction;
-import io.jmix.flowui.binder.data.EntityDataUnit;
+import io.jmix.flowui.data.EntityDataUnit;
 import io.jmix.flowui.component.UiComponentUtils;
 import io.jmix.flowui.kit.component.FlowUiComponentUtils;
 import io.jmix.flowui.kit.component.KeyCombination;

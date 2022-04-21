@@ -6,7 +6,7 @@ import io.jmix.core.security.EntityOp;
 import io.jmix.flowui.FlowUiComponentProperties;
 import io.jmix.flowui.action.ActionType;
 import io.jmix.flowui.action.AdjustWhenScreenReadOnly;
-import io.jmix.flowui.binder.data.ContainerDataUnit;
+import io.jmix.flowui.data.ContainerDataUnit;
 import io.jmix.flowui.kit.action.ActionVariant;
 import io.jmix.flowui.kit.component.FlowUiComponentUtils;
 import io.jmix.flowui.kit.component.KeyCombination;

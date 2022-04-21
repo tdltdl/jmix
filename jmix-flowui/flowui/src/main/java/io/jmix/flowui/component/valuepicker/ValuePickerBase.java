@@ -9,7 +9,7 @@ import com.vaadin.flow.shared.Registration;
 import io.jmix.flowui.UiComponents;
 import io.jmix.flowui.action.binder.ActionBinders;
 import io.jmix.flowui.action.valuepicker.PickerAction;
-import io.jmix.flowui.binder.data.ValueSource;
+import io.jmix.flowui.data.ValueSource;
 import io.jmix.flowui.component.*;
 import io.jmix.flowui.component.delegate.AbstractFieldDelegate;
 import io.jmix.flowui.component.delegate.FieldDelegate;

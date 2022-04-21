@@ -20,8 +20,8 @@ import com.vaadin.flow.data.provider.hierarchy.HierarchicalDataProvider;
 import com.vaadin.flow.data.provider.hierarchy.HierarchicalQuery;
 import io.jmix.core.common.util.Preconditions;
 import io.jmix.core.entity.EntityValues;
-import io.jmix.flowui.binder.data.BindingState;
-import io.jmix.flowui.binder.data.grid.EntityTreeGridDataItems;
+import io.jmix.flowui.data.BindingState;
+import io.jmix.flowui.data.grid.EntityTreeGridDataItems;
 import io.jmix.flowui.model.CollectionContainer;
 
 import javax.annotation.Nullable;

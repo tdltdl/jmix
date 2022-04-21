@@ -2,7 +2,7 @@ package io.jmix.flowui.component.grid;
 
 import io.jmix.core.Sort;
 import io.jmix.core.metamodel.model.MetaPropertyPath;
-import io.jmix.flowui.binder.data.grid.GridDataItems;
+import io.jmix.flowui.data.grid.GridDataItems;
 import io.jmix.flowui.model.CollectionContainer;
 import io.jmix.flowui.model.CollectionLoader;
 import io.jmix.flowui.model.HasLoader;
