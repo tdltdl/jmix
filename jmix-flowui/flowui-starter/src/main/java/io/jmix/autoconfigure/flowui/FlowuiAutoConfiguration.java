@@ -16,12 +16,47 @@
 
 package io.jmix.autoconfigure.flowui;
 
+import io.jmix.core.CoreConfiguration;
+import io.jmix.core.JmixModules;
+import io.jmix.core.impl.scanning.AnnotationScanMetadataReaderFactory;
 import io.jmix.flowui.FlowuiConfiguration;
+import io.jmix.flowui.sys.ActionsConfiguration;
+import io.jmix.flowui.sys.UiControllersConfiguration;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
+import java.util.Collections;
+
 
 @Configuration
-@Import({FlowuiConfiguration.class})
+@Import({CoreConfiguration.class, FlowuiConfiguration.class})
 public class FlowuiAutoConfiguration {
+
+    @Bean("jmix_AppFlowuiControllers")
+    @ConditionalOnMissingBean(name = "jmix_AppFlowuiControllers")
+    public UiControllersConfiguration uiControllersConfiguration(
+            ApplicationContext applicationContext,
+            AnnotationScanMetadataReaderFactory metadataReaderFactory,
+            JmixModules jmixModules) {
+
+        UiControllersConfiguration uiControllers
+                = new UiControllersConfiguration(applicationContext, metadataReaderFactory);
+        uiControllers.setBasePackages(Collections.singletonList(jmixModules.getLast().getBasePackage()));
+        return uiControllers;
+    }
+
+    @Bean("jmix_AppFlowuiActions")
+    @ConditionalOnMissingBean(name = "jmix_AppFlowuiActions")
+    public ActionsConfiguration actionsConfiguration(
+            ApplicationContext applicationContext,
+            AnnotationScanMetadataReaderFactory metadataReaderFactory,
+            JmixModules jmixModules) {
+
+        ActionsConfiguration actionsConfiguration = new ActionsConfiguration(applicationContext, metadataReaderFactory);
+        actionsConfiguration.setBasePackages(Collections.singletonList(jmixModules.getLast().getBasePackage()));
+        return actionsConfiguration;
+    }
 }

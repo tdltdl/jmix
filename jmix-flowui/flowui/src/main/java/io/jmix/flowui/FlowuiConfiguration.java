@@ -17,11 +17,19 @@
 package io.jmix.flowui;
 
 import io.jmix.core.CoreConfiguration;
+import io.jmix.core.JmixModules;
 import io.jmix.core.annotation.JmixModule;
+import io.jmix.core.impl.scanning.AnnotationScanMetadataReaderFactory;
+import io.jmix.flowui.sys.ActionsConfiguration;
+import io.jmix.flowui.sys.UiControllersConfiguration;
 import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+
+import java.util.Collections;
 
 @Configuration
 @ComponentScan
@@ -29,4 +37,22 @@ import org.springframework.context.annotation.PropertySource;
 @JmixModule(dependsOn = CoreConfiguration.class)
 @PropertySource(name = "io.jmix.flowui", value = "classpath:/io/jmix/flowui/module.properties")
 public class FlowuiConfiguration {
+
+    @Bean("flowui_UiControllers")
+    public UiControllersConfiguration screens(ApplicationContext applicationContext,
+                                              AnnotationScanMetadataReaderFactory metadataReaderFactory) {
+        UiControllersConfiguration uiControllers
+                = new UiControllersConfiguration(applicationContext, metadataReaderFactory);
+        // TODO: gg, no screens yet
+        uiControllers.setBasePackages(Collections.singletonList("io.jmix.flowui.app"));
+        return uiControllers;
+    }
+
+    @Bean("flowui_UiActions")
+    public ActionsConfiguration actions(ApplicationContext applicationContext,
+                                        AnnotationScanMetadataReaderFactory metadataReaderFactory) {
+        ActionsConfiguration actionsConfiguration = new ActionsConfiguration(applicationContext, metadataReaderFactory);
+        actionsConfiguration.setBasePackages(Collections.singletonList("io.jmix.flowui.action"));
+        return actionsConfiguration;
+    }
 }
