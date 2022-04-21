@@ -33,8 +33,8 @@ public class ObservableList<T> extends ForwardingList<T> implements Serializable
 
     private static final long serialVersionUID = -1887633822578545041L;
 
-    private List<T> delegate;
-    private transient BiConsumer<CollectionChangeType, Collection<? extends T>> onCollectionChanged;
+    private final List<T> delegate;
+    private final transient BiConsumer<CollectionChangeType, Collection<? extends T>> onCollectionChanged;
     private Map<IndexKey, Integer> idMap;
     private Consumer<T> onRemoveItem;
     private Consumer<T> onAddItem;

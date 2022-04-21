@@ -29,8 +29,8 @@ import java.util.function.Consumer;
 public class WeakCollectionChangeListener<E>
         implements Consumer<CollectionContainer.CollectionChangeEvent<E>> {
 
-    private WeakReference<Consumer<CollectionContainer.CollectionChangeEvent<E>>> reference;
-    private Subscription subscription;
+    private final WeakReference<Consumer<CollectionContainer.CollectionChangeEvent<E>>> reference;
+    private final Subscription subscription;
 
     @SuppressWarnings("unchecked")
     public WeakCollectionChangeListener(CollectionContainer container,

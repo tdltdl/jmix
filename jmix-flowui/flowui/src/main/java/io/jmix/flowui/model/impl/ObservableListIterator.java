@@ -33,9 +33,9 @@ import java.util.function.Consumer;
 @SameAsUi
 class ObservableListIterator<T> extends ForwardingListIterator<T> {
 
-    private ListIterator<T> delegate;
-    private BiConsumer<CollectionChangeType, Collection<? extends T>> onCollectionChanged;
-    private Consumer<T> onAddItem;
+    private final ListIterator<T> delegate;
+    private final BiConsumer<CollectionChangeType, Collection<? extends T>> onCollectionChanged;
+    private final Consumer<T> onAddItem;
 
     protected ObservableListIterator(ListIterator<T> delegate,
                                      BiConsumer<CollectionChangeType, Collection<? extends T>> onCollectionChanged,

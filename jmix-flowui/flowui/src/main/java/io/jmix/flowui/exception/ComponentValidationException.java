@@ -20,7 +20,8 @@ import com.vaadin.flow.component.Component;
 
 public class ComponentValidationException extends ValidationException
         implements ValidationException.HasRelatedComponent {
-    private Component component;
+
+    private final Component component;
 
     public ComponentValidationException(String message, Component component) {
         super(message);

@@ -112,7 +112,7 @@ public class AbstractBeanValidator implements Validator {
     public String getDefaultErrorMessage() {
         MetaClass metaClass = metadata.getClass(beanClass);
 
-        return messages.formatMessage("", "validation.defaultMsg",
+        return messages.formatMessage("", "validation.defaultMessage",
                 messageTools.getPropertyCaption(metaClass, beanProperty));
     }
 

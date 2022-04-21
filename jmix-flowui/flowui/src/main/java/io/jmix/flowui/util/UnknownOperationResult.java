@@ -27,7 +27,7 @@ public class UnknownOperationResult implements OperationResult {
     private final List<Runnable> thenListeners = new ArrayList<>(2);
     private final List<Runnable> otherwiseListeners = new ArrayList<>(2);
 
-    private Status status = Status.UNKNOWN;
+    private final Status status = Status.UNKNOWN;
 
     @Override
     public Status getStatus() {
@@ -36,6 +36,7 @@ public class UnknownOperationResult implements OperationResult {
 
     @Override
     public OperationResult compose(Supplier<OperationResult> nextStep) {
+        // TODO: gg, refactor. Can status be another type?
         if (status == Status.SUCCESS) {
             return nextStep.get();
         }

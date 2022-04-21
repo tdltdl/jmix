@@ -88,7 +88,7 @@ public abstract class AbstractValueBinding<V> implements ValueBinding<V> {
 
         componentValueChangeRegistration = addComponentValueChangeListener(this::onComponentValueChange);
 
-        valueSourceValueChangeSubscription = valueSource.addValueChangeListener(event -> onValueSourceValueChange(event));
+        valueSourceValueChangeSubscription = valueSource.addValueChangeListener(this::onValueSourceValueChange);
         valueSourceStateChangeSubscription = valueSource.addStateChangeListener(this::valueSourceStateChanged);
 
         component.setReadOnly(valueSource.isReadOnly());

@@ -21,7 +21,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class CompositeValidationException extends ValidationException {
-    private List<ViolationCause> causes;
+
+    private final List<ViolationCause> causes;
 
     public CompositeValidationException(String message, List<ViolationCause> causes) {
         super(message);

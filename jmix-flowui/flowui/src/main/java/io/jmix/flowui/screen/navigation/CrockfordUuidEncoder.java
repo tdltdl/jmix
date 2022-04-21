@@ -34,16 +34,16 @@ import java.util.regex.Pattern;
  */
 public final class CrockfordUuidEncoder {
 
-    protected static final int INVALID_CHAR = -1;
-    protected static final int BASE = 32;
+    private static final int INVALID_CHAR = -1;
+    private static final int BASE = 32;
 
-    protected static final String CROCKFORD_CHARSET = "0123456789ABCDEFGHJKMNPQRSTVWXYZ";
+    private static final String CROCKFORD_CHARSET = "0123456789ABCDEFGHJKMNPQRSTVWXYZ";
 
-    protected static final char[] ENCODE_TABLE = new char[BASE];
-    protected static final int[] DECODE_TABLE = new int['z' + 1];
+    private static final char[] ENCODE_TABLE = new char[BASE];
+    private static final int[] DECODE_TABLE = new int['z' + 1];
 
-    protected static final String STRING_UUID_SPLIT_REGEX = "(\\w{8})(\\w{4})(\\w{4})(\\w{4})(\\w{12})";
-    protected static final Pattern STRING_UUID_SPLIT_PATTERN = Pattern.compile(STRING_UUID_SPLIT_REGEX);
+    private static final String STRING_UUID_SPLIT_REGEX = "(\\w{8})(\\w{4})(\\w{4})(\\w{4})(\\w{12})";
+    private static final Pattern STRING_UUID_SPLIT_PATTERN = Pattern.compile(STRING_UUID_SPLIT_REGEX);
 
     static {
         buildEncodeTable();
@@ -115,7 +115,7 @@ public final class CrockfordUuidEncoder {
         return parseUuid(stringUuid);
     }
 
-    protected static UUID parseUuid(String stringUuid) {
+    private static UUID parseUuid(String stringUuid) {
         Matcher matcher = STRING_UUID_SPLIT_PATTERN.matcher(stringUuid);
 
         if (!matcher.matches()) {
@@ -136,28 +136,21 @@ public final class CrockfordUuidEncoder {
     }
 
     // have to do this correction due to loosing leading zeros while converting to BigInt
-    protected static String correct(String uuid) {
+    private static String correct(String uuid) {
         if (uuid.length() == 32) {
             return uuid;
         }
 
-        StringBuilder corrected = new StringBuilder(32);
-
-        for (int i = 0; i < 32 - uuid.length(); i++) {
-            corrected.append('0');
-        }
-        corrected.append(uuid);
-
-        return corrected.toString();
+        return "0".repeat(Math.max(0, 32 - uuid.length())) + uuid;
     }
 
-    protected static void buildEncodeTable() {
+    private static void buildEncodeTable() {
         for (int i = 0; i < BASE; i++) {
             CrockfordUuidEncoder.ENCODE_TABLE[i] = CrockfordUuidEncoder.CROCKFORD_CHARSET.charAt(i);
         }
     }
 
-    protected static void buildDecodeTable() {
+    private static void buildDecodeTable() {
         int[] table = CrockfordUuidEncoder.DECODE_TABLE;
 
         Arrays.fill(table, INVALID_CHAR);

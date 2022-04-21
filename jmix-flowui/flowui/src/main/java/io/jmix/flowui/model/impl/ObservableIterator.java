@@ -24,7 +24,7 @@ import java.util.Iterator;
 @SameAsUi
 class ObservableIterator<T> extends ForwardingIterator<T> {
 
-    private Iterator<T> delegate;
+    private final Iterator<T> delegate;
 
     protected ObservableIterator(Iterator<T> delegate) {
         this.delegate = delegate;

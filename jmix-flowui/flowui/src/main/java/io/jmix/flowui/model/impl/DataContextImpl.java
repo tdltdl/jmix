@@ -139,7 +139,6 @@ public class DataContextImpl implements DataContextInternal {
         return (T) find(entity.getClass(), makeKey(entity));
     }
 
-    @SuppressWarnings("unchecked")
     @Override
     public boolean contains(Object entity) {
         checkNotNullArgument(entity, "entity is null");
@@ -243,11 +242,7 @@ public class DataContextImpl implements DataContextInternal {
 
     protected Object makeKey(Object entity) {
         Object id = EntityValues.getId(entity);
-        if (id != null) {
-            return id;
-        } else {
-            return entity;
-        }
+        return Objects.requireNonNullElse(id, entity);
     }
 
     protected Object copyEntity(Object srcEntity) {
@@ -362,7 +357,6 @@ public class DataContextImpl implements DataContextInternal {
         }
     }
 
-    @SuppressWarnings("unchecked")
     protected void copySystemState(Object srcEntity, Object dstEntity) {
         EntityPreconditions.checkEntityType(srcEntity);
         EntityPreconditions.checkEntityType(dstEntity);
@@ -808,7 +802,7 @@ public class DataContextImpl implements DataContextInternal {
 
     protected String printEntity(Object entity, int level, Set<Object> visited) {
         StringBuilder sb = new StringBuilder();
-        sb.append(printObject(entity)).append(" ").append(entity.toString()).append("\n");
+        sb.append(printObject(entity)).append(" ").append(entity).append("\n");
 
         if (visited.contains(entity)) {
             return sb.toString();
@@ -821,13 +815,13 @@ public class DataContextImpl implements DataContextInternal {
             Object value = EntityValues.getValue(entity, property.getName());
             String prefix = StringUtils.repeat("  ", level);
             if (value instanceof Entity) {
-                String str = printEntity((Entity) value, level + 1, visited);
+                String str = printEntity(value, level + 1, visited);
                 if (!str.equals(""))
                     sb.append(prefix).append(str);
             } else if (value instanceof Collection) {
                 sb.append(prefix).append(value.getClass().getSimpleName()).append("[\n");
                 for (Object item : (Collection) value) {
-                    String str = printEntity((Entity) item, level + 1, visited);
+                    String str = printEntity(item, level + 1, visited);
                     if (!str.equals(""))
                         sb.append(prefix).append(str);
                 }

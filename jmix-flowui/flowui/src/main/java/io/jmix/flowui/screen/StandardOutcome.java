@@ -55,7 +55,7 @@ public enum StandardOutcome {
      */
     SELECT(new StandardCloseAction("select"));
 
-    private CloseAction closeAction;
+    private final CloseAction closeAction;
 
     StandardOutcome(CloseAction closeAction) {
         this.closeAction = closeAction;
