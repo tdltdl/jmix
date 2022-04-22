@@ -1,5 +1,6 @@
 package io.jmix.flowui.action.binder.component;
 
+import com.google.common.base.Strings;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.ComponentEventListener;
 import com.vaadin.flow.component.icon.Icon;
@@ -12,7 +13,6 @@ import io.jmix.flowui.action.binder.ActionsHolderBindingImpl;
 import io.jmix.flowui.component.valuepicker.ValuePickerButton;
 import io.jmix.flowui.kit.action.Action;
 import io.jmix.flowui.kit.component.KeyCombination;
-import joptsimple.internal.Strings;
 import org.springframework.core.annotation.Order;
 
 import javax.annotation.Nullable;

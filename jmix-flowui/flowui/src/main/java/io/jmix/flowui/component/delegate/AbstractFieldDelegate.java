@@ -1,5 +1,6 @@
 package io.jmix.flowui.component.delegate;
 
+import com.google.common.base.Strings;
 import com.vaadin.flow.component.AbstractField;
 import com.vaadin.flow.component.HasLabel;
 import com.vaadin.flow.component.HasValidation;
@@ -14,7 +15,6 @@ import io.jmix.flowui.component.SupportsTypedValue;
 import io.jmix.flowui.component.validation.Validator;
 import io.jmix.flowui.exception.ComponentValidationException;
 import io.jmix.flowui.exception.ValidationException;
-import joptsimple.internal.Strings;
 import org.apache.commons.collections4.CollectionUtils;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
