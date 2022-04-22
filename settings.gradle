@@ -68,7 +68,7 @@ includeProject('emailtemplates-ui-starter', 'jmix-emailtemplates/emailtemplates-
 includeProject('flowui', 'jmix-flowui/flowui')
 includeProject('flowui-starter', 'jmix-flowui/flowui-starter')
 includeProject('flowui-kit', 'jmix-flowui/flowui-kit')
-//includeProject('flowui-themes', 'jmix-flowui/flowui-themes')
+includeProject('flowui-themes', 'jmix-flowui/flowui-themes')
 
 includeProject('grapesjs', 'jmix-grapesjs/grapesjs')
 includeProject('grapesjs-starter', 'jmix-grapesjs/grapesjs-starter')
