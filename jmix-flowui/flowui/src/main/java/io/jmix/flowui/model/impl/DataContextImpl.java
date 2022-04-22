@@ -112,12 +112,12 @@ public class DataContextImpl implements DataContextInternal {
     }
 
     @Override
-    public Subscription addChangeListener(Consumer<DataContext.ChangeEvent> listener) {
-        return events.subscribe(DataContext.ChangeEvent.class, listener);
+    public Subscription addChangeListener(Consumer<ChangeEvent> listener) {
+        return events.subscribe(ChangeEvent.class, listener);
     }
 
     protected void fireChangeListener(Object entity) {
-        events.publish(DataContext.ChangeEvent.class, new DataContext.ChangeEvent(this, entity));
+        events.publish(ChangeEvent.class, new ChangeEvent(this, entity));
     }
 
     @SuppressWarnings("unchecked")
@@ -249,7 +249,8 @@ public class DataContextImpl implements DataContextInternal {
         Object dstEntity;
         try {
             dstEntity = srcEntity.getClass().getDeclaredConstructor().newInstance();
-        } catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
+        } catch (InstantiationException | IllegalAccessException | NoSuchMethodException |
+                 InvocationTargetException e) {
             throw new RuntimeException("Cannot create an instance of " + srcEntity.getClass(), e);
         }
         copySystemState(srcEntity, dstEntity);
@@ -259,7 +260,6 @@ public class DataContextImpl implements DataContextInternal {
     protected void mergeState(Object srcEntity, Object dstEntity, Map<Object, Object> mergedMap,
                               boolean isRoot, MergeOptions options) {
         boolean srcNew = entityStates.isNew(srcEntity);
-        boolean dstNew = entityStates.isNew(dstEntity);
 
         mergeSystemState(srcEntity, dstEntity, isRoot, options);
 
@@ -268,8 +268,7 @@ public class DataContextImpl implements DataContextInternal {
         for (MetaProperty property : metaClass.getProperties()) {
             String propertyName = property.getName();
             if (!property.getRange().isClass()                                             // local
-                    && (srcNew || entityStates.isLoaded(srcEntity, propertyName))          // loaded src
-                    && (dstNew || entityStates.isLoaded(dstEntity, propertyName))) {       // loaded dst
+                    && (srcNew || entityStates.isLoaded(srcEntity, propertyName))) {          // loaded src
 
                 Object value = EntityValues.getValue(srcEntity, propertyName);
 
@@ -285,8 +284,7 @@ public class DataContextImpl implements DataContextInternal {
         for (MetaProperty property : metaClass.getProperties()) {
             String propertyName = property.getName();
             if (property.getRange().isClass()                                               // refs and collections
-                    && (srcNew || entityStates.isLoaded(srcEntity, propertyName))           // loaded src
-                    && (dstNew || entityStates.isLoaded(dstEntity, propertyName))) {        // loaded dst
+                    && (srcNew || entityStates.isLoaded(srcEntity, propertyName))) {           // loaded src
                 Object value = EntityValues.getValue(srcEntity, propertyName);
 
                 // ignore null values in non-root source entities
@@ -294,8 +292,8 @@ public class DataContextImpl implements DataContextInternal {
                     continue;
                 }
 
-                if (value == null) {
-                    setPropertyValue(dstEntity, property, null);
+                if (value == null || !entityStates.isLoaded(dstEntity, propertyName)) {
+                    setPropertyValue(dstEntity, property, value);
                     continue;
                 }
 
@@ -639,8 +637,8 @@ public class DataContextImpl implements DataContextInternal {
 
     @Override
     public EntitySet commit() {
-        DataContext.PreCommitEvent preCommitEvent = new DataContext.PreCommitEvent(this, modifiedInstances, removedInstances);
-        events.publish(DataContext.PreCommitEvent.class, preCommitEvent);
+        PreCommitEvent preCommitEvent = new PreCommitEvent(this, modifiedInstances, removedInstances);
+        events.publish(PreCommitEvent.class, preCommitEvent);
         if (preCommitEvent.isCommitPrevented())
             return EntitySet.of(Collections.emptySet());
 
@@ -652,7 +650,7 @@ public class DataContextImpl implements DataContextInternal {
             nullIdEntitiesMap.clear();
         }
 
-        events.publish(DataContext.PostCommitEvent.class, new DataContext.PostCommitEvent(this, committedAndMerged));
+        events.publish(PostCommitEvent.class, new PostCommitEvent(this, committedAndMerged));
 
         modifiedInstances.clear();
         removedInstances.clear();
@@ -661,13 +659,13 @@ public class DataContextImpl implements DataContextInternal {
     }
 
     @Override
-    public Subscription addPreCommitListener(Consumer<DataContext.PreCommitEvent> listener) {
-        return events.subscribe(DataContext.PreCommitEvent.class, listener);
+    public Subscription addPreCommitListener(Consumer<PreCommitEvent> listener) {
+        return events.subscribe(PreCommitEvent.class, listener);
     }
 
     @Override
-    public Subscription addPostCommitListener(Consumer<DataContext.PostCommitEvent> listener) {
-        return events.subscribe(DataContext.PostCommitEvent.class, listener);
+    public Subscription addPostCommitListener(Consumer<PostCommitEvent> listener) {
+        return events.subscribe(PostCommitEvent.class, listener);
     }
 
     @Override
