@@ -66,6 +66,9 @@ public abstract class BaseLoaderConfig {
         loaders.put("numberField", NumberFieldLoader.class);
         loaders.put("passwordField", PasswordFieldLoader.class);
         loaders.put("bigDecimalField", BigDecimalFieldLoader.class);
+        loaders.put("progressBar", ProgressBarLoader.class);
+        loaders.put("radioButtonGroup", RadioButtonGroupLoader.class);
+        loaders.put("textArea", TextAreaLoader.class);
         loaders.put("checkBox", CheckBoxLoader.class);
         loaders.put("comboBox", ComboBoxLoader.class);
         loaders.put("timePicker", TimePickerLoader.class);

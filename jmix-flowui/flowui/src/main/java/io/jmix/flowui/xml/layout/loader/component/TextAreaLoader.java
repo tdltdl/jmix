@@ -18,30 +18,27 @@ package io.jmix.flowui.xml.layout.loader.component;
 
 import com.vaadin.flow.component.textfield.Autocapitalize;
 import com.vaadin.flow.component.textfield.Autocomplete;
-import com.vaadin.flow.component.textfield.NumberField;
+import com.vaadin.flow.component.textfield.TextArea;
 import io.jmix.flowui.xml.layout.loader.AbstractComponentLoader;
 
-//TODO: kremnevda, replace NumberField to JmixNumberField 26.04.2022
-public class NumberFieldLoader extends AbstractComponentLoader<NumberField> {
+//TODO: kremnevda, replace TextAreaLoader to JmixTextAreaLoader 26.04.2022
+public class TextAreaLoader extends AbstractComponentLoader<TextArea> {
 
     @Override
-    protected NumberField createComponent() {
-        return factory.create(NumberField.class);
+    protected TextArea createComponent() {
+        return factory.create(TextArea.class);
     }
 
     @Override
     public void loadComponent() {
-        loadDouble(element, "max", resultComponent::setMax);
-        loadDouble(element, "min", resultComponent::setMin);
-        loadDouble(element, "step", resultComponent::setStep);
         loadString(element, "label", resultComponent::setLabel);
-        loadString(element, "title", resultComponent::setTitle);
-        loadDouble(element, "value", resultComponent::setValue);
+        loadString(element, "value", resultComponent::setValue);
+        loadString(element, "pattern", resultComponent::setPattern);
         loadBoolean(element, "invalid", resultComponent::setInvalid);
+        loadBoolean(element, "required", resultComponent::setRequired);
         loadBoolean(element, "autofocus", resultComponent::setAutofocus);
         loadBoolean(element, "autoSelect", resultComponent::setAutoselect);
         loadString(element, "placeholder", resultComponent::setPlaceholder);
-        loadBoolean(element, "hasControls", resultComponent::setHasControls);
         loadBoolean(element, "autoCorrect", resultComponent::setAutocorrect);
         loadBoolean(element, "clearButtonVisible", resultComponent::setClearButtonVisible);
         loadEnum(element, Autocomplete.class, "autoComplete", resultComponent::setAutocomplete);
@@ -49,10 +46,10 @@ public class NumberFieldLoader extends AbstractComponentLoader<NumberField> {
         loadEnum(element, Autocapitalize.class, "autoCapitalize", resultComponent::setAutocapitalize);
 
         componentLoader().loadEnabled(resultComponent, element);
-        componentLoader().loadThemeName(resultComponent, element);
         componentLoader().loadClassName(resultComponent, element);
-        componentLoader().loadHelperText(resultComponent, element);
+        componentLoader().loadThemeName(resultComponent, element);
         componentLoader().loadSizeAttributes(resultComponent, element);
+        componentLoader().loadHelperText(resultComponent, element);
         componentLoader().loadValueChangeMode(resultComponent, element);
         componentLoader().loadValueAndElementAttributes(resultComponent, element);
     }

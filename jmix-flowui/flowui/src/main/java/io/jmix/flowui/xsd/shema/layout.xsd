@@ -752,6 +752,32 @@
         </xs:restriction>
     </xs:simpleType>
 
+    <xs:simpleType name="progressBarVariants">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="LUMO_CONTRAST"/>
+            <xs:enumeration value="LUMO_ERROR"/>
+            <xs:enumeration value="LUMO_SUCCESS"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="radioButtonGroupVariants">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="LUMO_VERTICAL"/>
+            <xs:enumeration value="LUMO_HELPER_ABOVE_FIELD"/>
+            <xs:enumeration value="MATERIAL_VERTICAL"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="textAreaVariants">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="LUMO_SMALL"/>
+            <xs:enumeration value="LUMO_ALIGN_CENTER"/>
+            <xs:enumeration value="LUMO_ALIGN_RIGHT"/>
+            <xs:enumeration value="LUMO_HELPER_ABOVE_FIELD"/>
+            <xs:enumeration value="MATERIAL_ALWAYS_FLOAT_LABEL"/>
+        </xs:restriction>
+    </xs:simpleType>
+
     <xs:simpleType name="gridNestedNullBehaviorVariants">
         <xs:restriction base="xs:string">
             <xs:enumeration value="THROW"/>
@@ -1905,6 +1931,70 @@
         </xs:complexContent>
     </xs:complexType>
 
+    <!-- ProgressBar-->
+    <xs:complexType name="progressBarComponent">
+        <xs:complexContent>
+            <xs:extension base="baseComponent">
+                <xs:attribute name="max" type="xs:double"/>
+                <xs:attribute name="min" type="xs:double"/>
+                <xs:attribute name="value" type="xs:double"/>
+                <xs:attribute name="indeterminate" type="xs:boolean"/>
+                <xs:attribute name="themeName" type="progressBarVariants"/>
+
+                <xs:attributeGroup ref="hasClassName"/>
+                <xs:attributeGroup ref="hasSize"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <!-- RadioButtonGroup-->
+    <xs:complexType name="radioButtonGroupComponent">
+        <xs:complexContent>
+            <xs:extension base="baseComponent">
+                <xs:attribute name="errorMessage" type="resourceString"/>
+                <xs:attribute name="invalid" type="xs:boolean"/>
+                <xs:attribute name="label" type="xs:string"/>
+                <xs:attribute name="required" type="xs:boolean"/>
+                <xs:attribute name="themeName" type="radioButtonGroupVariants"/>
+
+                <xs:attributeGroup ref="hasSize"/>
+                <xs:attributeGroup ref="hasEnable"/>
+                <xs:attributeGroup ref="hasClassName"/>
+                <xs:attributeGroup ref="hasHelperText"/>
+                <xs:attributeGroup ref="hasValueAndElement"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <!-- TextArea-->
+    <xs:complexType name="textAreaComponent">
+        <xs:complexContent>
+            <xs:extension base="baseComponent">
+                <xs:attribute name="label" type="xs:string"/>
+                <xs:attribute name="value" type="xs:string"/>
+                <xs:attribute name="pattern" type="xs:string"/>
+                <xs:attribute name="invalid" type="xs:boolean"/>
+                <xs:attribute name="required" type="xs:boolean"/>
+                <xs:attribute name="autofocus" type="xs:boolean"/>
+                <xs:attribute name="autoSelect" type="xs:boolean"/>
+                <xs:attribute name="autoCorrect" type="xs:boolean"/>
+                <xs:attribute name="clearButtonVisible" type="xs:boolean"/>
+                <xs:attribute name="autoComplete" type="autocompleteVariants"/>
+                <xs:attribute name="errorMessage" type="resourceString"/>
+                <xs:attribute name="autoCapitalize" type="autocapitalizeVariants"/>
+                <xs:attribute name="themeName" type="textAreaVariants"/>
+
+                <xs:attributeGroup ref="hasPlaceHolder"/>
+                <xs:attributeGroup ref="hasEnable"/>
+                <xs:attributeGroup ref="hasClassName"/>
+                <xs:attributeGroup ref="hasSize"/>
+                <xs:attributeGroup ref="hasHelperText"/>
+                <xs:attributeGroup ref="hasValueChangeMode"/>
+                <xs:attributeGroup ref="hasValueChangeMode"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
     <!-- Accordion -->
     <xs:complexType name="accordionContainer">
         <xs:complexContent>
@@ -2207,7 +2297,7 @@
                 <xs:element name="datePicker" type="datePickerComponent"/>
                 <!--                <xs:element name="slider" type="sliderComponent"/>-->
 
-                <!--                <xs:element name="textArea" type="textAreaComponent"/>-->
+                <xs:element name="textArea" type="textAreaComponent"/>
                 <!--                <xs:element name="resizableTextArea" type="resizableTextAreaComponent"/>-->
                 <xs:element name="textField" type="textFieldComponent"/>
                 <xs:element name="emailField" type="emailFieldComponent"/>
@@ -2232,11 +2322,11 @@
                 <!--                <xs:element name="entityComboBox" type="entityComboBoxComponent"/>-->
 
                 <!--                <xs:element name="colorPicker" type="colorPickerComponent"/>-->
-                <!--                <xs:element name="radioButtonGroup" type="radioButtonGroupComponent"/>-->
+                <xs:element name="radioButtonGroup" type="radioButtonGroupComponent"/>
                 <!--                <xs:element name="checkBoxGroup" type="checkBoxGroupComponent"/>-->
                 <!--                <xs:element name="multiSelectList" type="optionsBaseFieldComponent"/>-->
                 <!--                <xs:element name="singleSelectList" type="singleSelectListComponent"/>-->
-                <!--                <xs:element name="progressBar" type="progressBarComponent"/>-->
+                <xs:element name="progressBar" type="progressBarComponent"/>
 
                 <!--                <xs:element name="fileUpload" type="fileUploadComponent"/>-->
                 <!--                <xs:element name="fileStorageUpload" type="fileStorageUploadComponent"/>-->
