@@ -73,8 +73,8 @@ public class ScreenSupport {
         UiControllerUtils.setScreenData(screen, applicationContext.getBean(ScreenData.class));
 
         ActionBinders actionBinders = applicationContext.getBean(ActionBinders.class);
-        UiControllerUtils.setScreenActions(screen,
-                applicationContext.getBean(ScreenActions.class, actionBinders.binder(screen)));
+        ScreenActions actions = applicationContext.getBean(ScreenActions.class, actionBinders.binder(screen));
+        UiControllerUtils.setScreenActions(screen, actions);
 
         ScreenInfo screenInfo = getScreenInfo(screen);
 
@@ -84,6 +84,7 @@ public class ScreenSupport {
         componentLoaderContext.setCurrentFrameId(screenInfo.getId());
         componentLoaderContext.setMessageGroup(getPackage(screenInfo.getControllerClass()));
         componentLoaderContext.setScreen(screen);
+        componentLoaderContext.setScreenActions(actions);
 
         Element element = loadScreenXml(screenInfo);
         if (element != null) {

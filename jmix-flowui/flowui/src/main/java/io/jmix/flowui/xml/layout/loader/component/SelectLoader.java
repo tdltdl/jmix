@@ -28,13 +28,13 @@ public class SelectLoader extends AbstractComponentLoader<Select<?>> {
 
     @Override
     public void loadComponent() {
-        loadString(element, "label", resultComponent::setLabel);
         loadBoolean(element, "autofocus", resultComponent::setAutofocus);
         loadString(element, "placeHolder", resultComponent::setPlaceholder);
         loadString(element, "errorMessage", resultComponent::setErrorMessage);
         loadString(element, "emptySelectionCaption", resultComponent::setEmptySelectionCaption);
         loadBoolean(element, "emptySelectionAllowed", resultComponent::setEmptySelectionAllowed);
 
+        componentLoader().loadLabel(resultComponent, element);
         componentLoader().loadHelperText(resultComponent, element);
         componentLoader().loadSizeAttributes(resultComponent, element);
         componentLoader().loadValueAndElementAttributes(resultComponent, element);

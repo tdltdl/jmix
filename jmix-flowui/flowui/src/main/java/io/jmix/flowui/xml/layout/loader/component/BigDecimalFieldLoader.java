@@ -20,6 +20,8 @@ import io.jmix.flowui.component.textfield.JmixBigDecimalField;
 import io.jmix.flowui.xml.layout.loader.AbstractComponentLoader;
 import io.jmix.flowui.xml.layout.support.DataLoaderSupport;
 
+import java.math.BigDecimal;
+
 public class BigDecimalFieldLoader extends AbstractComponentLoader<JmixBigDecimalField> {
 
     protected DataLoaderSupport dataLoaderSupport;
@@ -40,27 +42,26 @@ public class BigDecimalFieldLoader extends AbstractComponentLoader<JmixBigDecima
     public void loadComponent() {
         getDataLoaderSupport().loadData(resultComponent, element);
 
+        loadDouble(element, "value")
+                .ifPresent(aDouble -> resultComponent.setValue(BigDecimal.valueOf(aDouble)));
         loadString(element, "title", resultComponent::setTitle);
-        loadString(element, "label", resultComponent::setLabel);
-        loadBoolean(element, "invalid", resultComponent::setInvalid);
         loadBoolean(element, "autofocus", resultComponent::setAutofocus);
-        loadBoolean(element, "autoSelect", resultComponent::setAutoselect);
+        loadBoolean(element, "autoselect", resultComponent::setAutoselect);
         loadString(element, "placeHolder", resultComponent::setPlaceholder);
         loadBoolean(element, "clearButtonVisible", resultComponent::setClearButtonVisible);
-        loadResourceString("errorMessage", context.getMessageGroup(), resultComponent::setErrorMessage);
-        loadBoolean(element, "requiredIndicatorVisible", resultComponent::setRequiredIndicatorVisible);
 
-
+        componentLoader().loadLabel(resultComponent, element);
         componentLoader().loadEnabled(resultComponent, element);
         componentLoader().loadThemeName(resultComponent, element);
         componentLoader().loadClassName(resultComponent, element);
         componentLoader().loadHelperText(resultComponent, element);
-        componentLoader().loadAutoCorrect(resultComponent, element);
-        componentLoader().loadAutoComplete(resultComponent, element);
+        componentLoader().loadAutocorrect(resultComponent, element);
+        componentLoader().loadAutocomplete(resultComponent, element);
         componentLoader().loadSizeAttributes(resultComponent, element);
-        componentLoader().loadAutoCapitalize(resultComponent, element);
-        componentLoader().loadRequiredMessage(resultComponent, context);
+        componentLoader().loadAutocapitalize(resultComponent, element);
         componentLoader().loadValueChangeMode(resultComponent, element);
+        componentLoader().loadRequired(resultComponent, element, context);
         componentLoader().loadValueAndElementAttributes(resultComponent, element);
+        componentLoader().loadValidationAttributes(resultComponent, element, context);
     }
 }

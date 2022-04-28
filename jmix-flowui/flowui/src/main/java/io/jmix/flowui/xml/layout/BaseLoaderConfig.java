@@ -16,18 +16,10 @@
 
 package io.jmix.flowui.xml.layout;
 
-
 import com.vaadin.flow.component.Component;
 import io.jmix.flowui.xml.layout.loader.component.*;
-import io.jmix.flowui.xml.layout.loader.container.AccordionLoader;
-import io.jmix.flowui.xml.layout.loader.container.ScrollerLoader;
-import io.jmix.flowui.xml.layout.loader.container.TabsLoader;
-import io.jmix.flowui.xml.layout.loader.html.component.HrLoader;
-import io.jmix.flowui.xml.layout.loader.html.component.IFrameLoader;
-import io.jmix.flowui.xml.layout.loader.html.component.InputLoader;
-import io.jmix.flowui.xml.layout.loader.html.component.ParamLoader;
-import io.jmix.flowui.xml.layout.loader.html.container.*;
-import io.jmix.flowui.xml.layout.loader.layout.*;
+import io.jmix.flowui.xml.layout.loader.container.*;
+import io.jmix.flowui.xml.layout.loader.html.*;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;

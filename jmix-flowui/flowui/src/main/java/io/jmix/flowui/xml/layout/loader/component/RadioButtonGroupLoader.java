@@ -29,16 +29,15 @@ public class RadioButtonGroupLoader extends AbstractComponentLoader<RadioButtonG
 
     @Override
     public void loadComponent() {
-        loadString(element, "label", resultComponent::setLabel);
-        loadBoolean(element, "invalid", resultComponent::setInvalid);
         loadBoolean(element, "required", resultComponent::setRequired);
-        loadResourceString("errorMessage", context.getMessageGroup(), resultComponent::setErrorMessage);
 
+        componentLoader().loadLabel(resultComponent, element);
         componentLoader().loadEnabled(resultComponent, element);
         componentLoader().loadClassName(resultComponent, element);
         componentLoader().loadThemeName(resultComponent, element);
         componentLoader().loadHelperText(resultComponent, element);
         componentLoader().loadSizeAttributes(resultComponent, element);
         componentLoader().loadValueAndElementAttributes(resultComponent, element);
+        componentLoader().loadValidationAttributes(resultComponent, element, context);
     }
 }

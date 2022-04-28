@@ -33,7 +33,6 @@ public class LoaderSupport {
 
     protected MessageTools messageTools;
 
-    @Autowired
     public LoaderSupport(MessageTools messageTools) {
         this.messageTools = messageTools;
     }
