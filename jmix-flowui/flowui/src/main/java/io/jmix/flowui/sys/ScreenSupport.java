@@ -88,6 +88,7 @@ public class ScreenSupport {
 
         Element element = loadScreenXml(screenInfo);
         if (element != null) {
+            loadMessageGroup(element, componentLoaderContext);
             loadWindowFromXml(element, screen, componentLoaderContext);
         }
 
@@ -245,6 +246,14 @@ public class ScreenSupport {
     protected Element loadScreenXml(ScreenInfo screenInfo) {
         Optional<String> templatePath = screenInfo.getTemplatePath();
         return templatePath.map(s -> screenXmlLoader.load(s)).orElse(null);
+    }
+
+
+    protected void loadMessageGroup(Element element, ComponentLoaderContext componentLoaderContext) {
+        String messageGroup = element.attributeValue("messagesGroup");
+        if (messageGroup != null) {
+            componentLoaderContext.setMessageGroup(messageGroup);
+        }
     }
 
     protected ComponentLoaderContext createComponentLoaderContext() {
