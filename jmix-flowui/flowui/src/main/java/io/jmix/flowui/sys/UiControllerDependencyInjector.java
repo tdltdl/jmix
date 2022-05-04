@@ -4,6 +4,7 @@ import com.google.common.base.Strings;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.ComponentEventListener;
 import com.vaadin.flow.component.HasComponents;
+import com.vaadin.flow.component.UI;
 import io.jmix.core.DevelopmentException;
 import io.jmix.flowui.kit.component.HasActions;
 import io.jmix.flowui.component.UiComponentUtils;
@@ -18,12 +19,15 @@ import io.jmix.flowui.sys.UiControllerReflectionInspector.AnnotatedMethod;
 import io.jmix.flowui.sys.UiControllerReflectionInspector.InjectElement;
 import io.jmix.flowui.sys.UiControllerReflectionInspector.ScreenIntrospectionData;
 import io.jmix.flowui.sys.delegate.*;
+import io.jmix.flowui.sys.event.UiEventListenerMethodAdapter;
+import io.jmix.flowui.sys.event.UiEventsManager;
 import org.apache.commons.lang3.JavaVersion;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.SystemUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationListener;
 
 import javax.annotation.Nullable;
 import java.lang.invoke.MethodHandle;
@@ -34,6 +38,7 @@ import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 import static java.lang.reflect.Proxy.newProxyInstance;
 import static org.springframework.core.annotation.AnnotatedElementUtils.findMergedAnnotation;
@@ -59,9 +64,7 @@ public class UiControllerDependencyInjector {
         injectElements(controller, screenIntrospectionData);
         initSubscribeListeners(controller, screenIntrospectionData);
         initInstallMethods(controller, screenIntrospectionData);
-
-        // todo rp Spring Application event listeners in Screen do not work, implement?
-//        initUiEventListeners(frameOwner, screenIntrospectionData);
+        initUiEventListeners(controller, screenIntrospectionData);
     }
 
     protected void injectElements(Screen controller, ScreenIntrospectionData screenIntrospectionData) {
@@ -187,6 +190,21 @@ public class UiControllerDependencyInjector {
             } catch (IllegalAccessException | InvocationTargetException e) {
                 throw new RuntimeException("CDI - Unable to assign value through setter "
                         + method.getName(), e);
+            }
+        }
+    }
+
+    protected void initUiEventListeners(Screen controller, ScreenIntrospectionData screenIntrospectionData) {
+        List<Method> eventListenerMethods = screenIntrospectionData.getEventListenerMethods();
+
+        if (!eventListenerMethods.isEmpty()) {
+            List<ApplicationListener<?>> listeners = eventListenerMethods.stream()
+                    .map(m -> new UiEventListenerMethodAdapter(controller, controller.getClass(), m, applicationContext))
+                    .collect(Collectors.toList());
+
+            UiEventsManager eventsMulticaster = applicationContext.getBean(UiEventsManager.class);
+            for (ApplicationListener<?> listener : listeners) {
+                eventsMulticaster.addApplicationListener(UI.getCurrent(), listener);
             }
         }
     }
