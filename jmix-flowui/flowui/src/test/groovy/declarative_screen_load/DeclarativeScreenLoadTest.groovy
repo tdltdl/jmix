@@ -1,10 +1,8 @@
 package declarative_screen_load
 
 import com.vaadin.flow.component.HasElement
-import com.vaadin.flow.component.UI
 import declarative_screen_load.screen.CustomerView
 import io.jmix.core.DataManager
-import io.jmix.flowui.ScreenNavigators
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.jdbc.core.JdbcTemplate
@@ -12,10 +10,8 @@ import test_support.entity.sales.Customer
 import test_support.spec.FlowuiTestSpecification
 
 @SpringBootTest
+@Deprecated
 class DeclarativeScreenLoadTest extends FlowuiTestSpecification {
-
-    @Autowired
-    ScreenNavigators screenNavigators
 
     @Autowired
     DataManager dataManager
@@ -34,12 +30,9 @@ class DeclarativeScreenLoadTest extends FlowuiTestSpecification {
         jdbcTemplate.execute("delete from TEST_CUSTOMER")
     }
 
-    def "navigateToTestProjectView"() {
+    def "Navigate to CustomerView"() {
         when: "Open the CustomerView"
-        screenNavigators.screen(CustomerView.class)
-                .navigate()
-
-        List<HasElement> activeRouterTargetsChain = UI.getCurrent().getInternals().getActiveRouterTargetsChain()
+        List<HasElement> activeRouterTargetsChain = getRouterChain(CustomerView.class)
 
         then: "Data container should be injected"
         activeRouterTargetsChain.get(0) instanceof CustomerView
@@ -49,14 +42,11 @@ class DeclarativeScreenLoadTest extends FlowuiTestSpecification {
         projectView.customersDc != null
     }
 
-    def "clickButtonInTestProjectView"() {
-        when:
-        screenNavigators.screen(CustomerView.class)
-                .navigate()
+    def "Click button in CustomerView"() {
+        when: "Open the CustomerView"
+        List<HasElement> activeRouterTargetsChain = getRouterChain(CustomerView.class)
 
-        List<HasElement> activeRouterTargetsChain = UI.getCurrent().getInternals().getActiveRouterTargetsChain()
-
-        then:
+        then: "The button will be clickable"
         activeRouterTargetsChain.get(0) instanceof CustomerView
 
         CustomerView projectView = (CustomerView) activeRouterTargetsChain.get(0)

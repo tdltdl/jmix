@@ -1,6 +1,7 @@
 package test_support.spec
 
 import com.google.common.base.Strings
+import com.vaadin.flow.component.HasElement
 import com.vaadin.flow.component.UI
 import com.vaadin.flow.router.Route
 import com.vaadin.flow.router.RouteConfiguration
@@ -9,8 +10,10 @@ import com.vaadin.flow.server.VaadinService
 import com.vaadin.flow.server.VaadinSession
 import com.vaadin.flow.spring.SpringServlet
 import com.vaadin.flow.spring.VaadinServletContextInitializer
+import declarative_screen_load.screen.CustomerView
 import io.jmix.core.impl.scanning.AnnotationScanMetadataReaderFactory
 import io.jmix.core.security.SystemAuthenticator
+import io.jmix.flowui.ScreenNavigators
 import io.jmix.flowui.screen.Screen
 import io.jmix.flowui.screen.ScreenRegistry
 import io.jmix.flowui.sys.UiControllersConfiguration
@@ -38,6 +41,9 @@ class FlowuiTestSpecification extends Specification {
 
     @Autowired
     ApplicationContext applicationContext
+
+    @Autowired
+    ScreenNavigators screenNavigators
 
     // saving session and UI to avoid it be GC'ed
     protected VaadinSession vaadinSession
@@ -157,5 +163,12 @@ class FlowuiTestSpecification extends Specification {
 
             routeConfiguration.setRoute(route.value(), controllerClass)
         })
+    }
+
+    protected List<HasElement> getRouterChain(Class<Screen> screenClass) {
+        screenNavigators.screen(screenClass)
+                .navigate()
+
+        UI.getCurrent().getInternals().getActiveRouterTargetsChain()
     }
 }

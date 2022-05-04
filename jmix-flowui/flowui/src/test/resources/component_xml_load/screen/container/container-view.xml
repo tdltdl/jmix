@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <screen xmlns="http://jmix.io/schema/flowui/screen">
     <data readOnly="true">
-        <collection id="customersDc"
-                    class="test_support.entity.sales.Customer">
+        <collection id="userDc"
+                    class="test_support.entity.sec.User">
             <fetchPlan extends="_base"/>
-            <loader id="customersDl">
+            <loader id="usersDl">
                 <query>
-                    <![CDATA[select e from test_Customer e]]>
+                    <![CDATA[select e from test_User e]]>
                 </query>
             </loader>
         </collection>

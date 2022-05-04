@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+  ~ Copyright 2022 Haulmont.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<screen xmlns="http://jmix.io/schema/flowui/screen">
+    <layout>
+        <!--        Containers-->
+        <article id="articleId" className="cssClassName1, cssClassName2" enabled="true" height="50px" width="100px"
+                 maxHeight="55px" maxWidth="120px" minHeight="40px" minWidth="80px" themeName="primary, small"
+                 title="articleTitle" visible="true" whiteSpace="PRE">
+            <article text="articleChild"/>
+        </article>
+        <aside id="asideId" className="cssClassName1, cssClassName2" enabled="true" height="50px" width="100px"
+               maxHeight="55px" maxWidth="120px" minHeight="40px" minWidth="80px" themeName="primary, small"
+               title="asideTitle" visible="true" whiteSpace="PRE">
+            <aside text="asideChild"/>
+        </aside>
+        <descriptionList id="descriptionListId" className="cssClassName1, cssClassName2" enabled="true" height="50px"
+                         width="100px"
+                         maxHeight="55px" maxWidth="120px" minHeight="40px" minWidth="80px" themeName="primary, small"
+                         title="descriptionListTitle" visible="true" whiteSpace="PRE">
+            <descriptionList text="descriptionListChild"/>
+        </descriptionList>
+        <term id="termId" className="cssClassName1, cssClassName2" enabled="true" height="50px"
+              width="100px"
+              maxHeight="55px" maxWidth="120px" minHeight="40px" minWidth="80px" themeName="primary, small"
+              title="termTitle" visible="true" whiteSpace="PRE">
+            <term text="termChild"/>
+        </term>
+        <description id="descriptionId" className="cssClassName1, cssClassName2" enabled="true" height="50px"
+                     width="100px"
+                     maxHeight="55px" maxWidth="120px" minHeight="40px" minWidth="80px" themeName="primary, small"
+                     title="descriptionTitle" visible="true" whiteSpace="PRE">
+            <description text="descriptionChild"/>
+        </description>
+        <div id="divId" className="cssClassName1, cssClassName2" enabled="true" height="50px" width="100px"
+             maxHeight="55px" maxWidth="120px" minHeight="40px" minWidth="80px" themeName="primary, small"
+             title="divTitle" visible="true" whiteSpace="PRE">
+            <div text="divChild"/>
+        </div>
+        <emphasis id="emphasisId" className="cssClassName1, cssClassName2" enabled="true" height="50px" width="100px"
+                  maxHeight="55px" maxWidth="120px" minHeight="40px" minWidth="80px" themeName="primary, small"
+                  title="emphasisTitle" visible="true" whiteSpace="PRE">
+            <emphasis text="emphasisChild"/>
+        </emphasis>
+        <footer id="footerId" className="cssClassName1, cssClassName2" enabled="true" height="50px" width="100px"
+                maxHeight="55px" maxWidth="120px" minHeight="40px" minWidth="80px" themeName="primary, small"
+                title="footerTitle" visible="true" whiteSpace="PRE">
+            <footer text="footerChild"/>
+        </footer>
+        <h1 id="h1Id" className="cssClassName1, cssClassName2" enabled="true" height="50px" width="100px"
+            maxHeight="55px" maxWidth="120px" minHeight="40px" minWidth="80px" themeName="primary, small"
+            title="h1Title" visible="true" whiteSpace="PRE">
+            <h1 text="h1Child"/>
+        </h1>
+        <h2 id="h2Id" className="cssClassName1, cssClassName2" enabled="true" height="50px" width="100px"
+            maxHeight="55px" maxWidth="120px" minHeight="40px" minWidth="80px" themeName="primary, small"
+            title="h2Title" visible="true" whiteSpace="PRE">
+            <h2 text="h2Child"/>
+        </h2>
+        <h3 id="h3Id" className="cssClassName1, cssClassName2" enabled="true" height="50px" width="100px"
+            maxHeight="55px" maxWidth="120px" minHeight="40px" minWidth="80px" themeName="primary, small"
+            title="h3Title" visible="true" whiteSpace="PRE">
+            <h3 text="h3Child"/>
+        </h3>
+        <h4 id="h4Id" className="cssClassName1, cssClassName2" enabled="true" height="50px" width="100px"
+            maxHeight="55px" maxWidth="120px" minHeight="40px" minWidth="80px" themeName="primary, small"
+            title="h4Title" visible="true" whiteSpace="PRE">
+            <h4 text="h4Child"/>
+        </h4>
+        <h5 id="h5Id" className="cssClassName1, cssClassName2" enabled="true" height="50px" width="100px"
+            maxHeight="55px" maxWidth="120px" minHeight="40px" minWidth="80px" themeName="primary, small"
+            title="h5Title" visible="true" whiteSpace="PRE">
+            <h5 text="h5Child"/>
+        </h5>
+        <h6 id="h6Id" className="cssClassName1, cssClassName2" enabled="true" height="50px" width="100px"
+            maxHeight="55px" maxWidth="120px" minHeight="40px" minWidth="80px" themeName="primary, small"
+            title="h6Title" visible="true" whiteSpace="PRE">
+            <h6 text="h6Child"/>
+        </h6>
+        <header id="headerId" className="cssClassName1, cssClassName2" enabled="true" height="50px" width="100px"
+                maxHeight="55px" maxWidth="120px" minHeight="40px" minWidth="80px" themeName="primary, small"
+                title="headerTitle" visible="true" whiteSpace="PRE">
+            <header text="headerChild"/>
+        </header>
+        <listItem id="listItemId" className="cssClassName1, cssClassName2" enabled="true" height="50px" width="100px"
+                  maxHeight="55px" maxWidth="120px" minHeight="40px" minWidth="80px" themeName="primary, small"
+                  title="listItemTitle" visible="true" whiteSpace="PRE">
+            <listItem text="listItemChild"/>
+        </listItem>
+        <p id="pId" className="cssClassName1, cssClassName2" enabled="true" height="50px" width="100px"
+           maxHeight="55px" maxWidth="120px" minHeight="40px" minWidth="80px" themeName="primary, small"
+           title="pTitle" visible="true" whiteSpace="PRE">
+            <p text="pChild"/>
+        </p>
+        <pre id="preId" className="cssClassName1, cssClassName2" enabled="true" height="50px" width="100px"
+             maxHeight="55px" maxWidth="120px" minHeight="40px" minWidth="80px" themeName="primary, small"
+             title="preTitle" visible="true" whiteSpace="PRE">
+            <pre text="preChild"/>
+        </pre>
+        <section id="sectionId" className="cssClassName1, cssClassName2" enabled="true" height="50px" width="100px"
+                 maxHeight="55px" maxWidth="120px" minHeight="40px" minWidth="80px" themeName="primary, small"
+                 title="sectionTitle" visible="true" whiteSpace="PRE">
+            <section text="sectionChild"/>
+        </section>
+        <span id="spanId" className="cssClassName1, cssClassName2" enabled="true" height="50px" width="100px"
+              maxHeight="55px" maxWidth="120px" minHeight="40px" minWidth="80px" themeName="primary, small"
+              title="spanTitle" visible="true" whiteSpace="PRE">
+            <span text="spanChild"/>
+        </span>
+        <unorderedList id="unorderedListId" className="cssClassName1, cssClassName2" enabled="true" height="50px"
+                       width="100px"
+                       maxHeight="55px" maxWidth="120px" minHeight="40px" minWidth="80px" themeName="primary, small"
+                       title="unorderedListTitle" visible="true" whiteSpace="PRE">
+            <unorderedList text="unorderedListChild"/>
+        </unorderedList>
+
+        <anchor id="anchorId" className="cssClassName1, cssClassName2" enabled="true" height="50px"
+                width="100px"
+                maxHeight="55px" maxWidth="120px" minHeight="40px" minWidth="80px" themeName="primary, small"
+                title="anchorTitle" visible="true" whiteSpace="PRE" href="anchorHref" target="PARENT">
+            <anchor text="anchorChild"/>
+        </anchor>
+
+        <htmlObject id="htmlObjectId" className="cssClassName1, cssClassName2" enabled="true" height="50px"
+                    width="100px"
+                    maxHeight="55px" maxWidth="120px" minHeight="40px" minWidth="80px" themeName="primary, small"
+                    title="htmlObjectTitle" visible="true" whiteSpace="PRE" data="data" type="type">
+            <htmlObject text="htmlObjectChild"/>
+        </htmlObject>
+
+        <image id="imageId" className="cssClassName1, cssClassName2" enabled="true" height="50px"
+               width="100px"
+               maxHeight="55px" maxWidth="120px" minHeight="40px" minWidth="80px" themeName="primary, small"
+               title="imageTitle" visible="true" whiteSpace="PRE" resource="resourceString"
+               alternateText="alternativeTextString" ariaLabel="ariaLabelString">
+            <image text="imageChild"/>
+        </image>
+
+        <main id="mainId" className="cssClassName1, cssClassName2" enabled="true" height="50px"
+              width="100px"
+              maxHeight="55px" maxWidth="120px" minHeight="40px" minWidth="80px" themeName="primary, small"
+              title="mainTitle" visible="true" whiteSpace="PRE" ariaLabel="ariaLabelString">
+            <main text="mainChild"/>
+        </main>
+
+        <nav id="navId" className="cssClassName1, cssClassName2" enabled="true" height="50px"
+             width="100px"
+             maxHeight="55px" maxWidth="120px" minHeight="40px" minWidth="80px" themeName="primary, small"
+             title="navTitle" visible="true" whiteSpace="PRE" ariaLabel="ariaLabelString">
+            <nav text="navChild"/>
+        </nav>
+
+        <orderedList id="orderedListId" className="cssClassName1, cssClassName2" enabled="true" height="50px"
+                     width="100px"
+                     maxHeight="55px" maxWidth="120px" minHeight="40px" minWidth="80px" themeName="primary, small"
+                     title="orderedListTitle" visible="true" whiteSpace="PRE" numberingType="UPPERCASE_LETTER">
+            <orderedList text="orderedListChild"/>
+        </orderedList>
+
+        <!--        Components-->
+        <hr/>
+        <iframe/>
+        <input/>
+        <param/>
+    </layout>
+</screen>
