@@ -20,7 +20,7 @@ import com.vaadin.flow.component.Component;
 import io.jmix.flowui.xml.layout.ComponentLoader;
 
 /**
- * Builds registration object that is used for adding new UI component loader or overriding UI components in the
+ * Builds registration object that is used for adding new component loader or overriding UI components in the
  * framework.
  * <p>
  * For instance:
@@ -29,10 +29,10 @@ import io.jmix.flowui.xml.layout.ComponentLoader;
  * public class ComponentConfiguration {
  *
  *     &#64;Bean
- *     public ComponentRegistration extButton() {
+ *     public ComponentRegistration extJmixButton() {
  *         return ComponentRegistrationBuilder.create(ExtJmixButton.class)
- *                 .withComponentClass(ExtWebButton.class)
- *                 .withComponentLoaderClass(ExtButtonLoader.class)
+ *                 .replaceComponent(JmixButton.class)
+ *                 .withComponentLoader("button", ExtButtonLoader.class)
  *                 .build();
  *     }
  * }
@@ -43,49 +43,48 @@ import io.jmix.flowui.xml.layout.ComponentLoader;
  */
 public class ComponentRegistrationBuilder {
 
-    protected Class<? extends Component> componentType;
+    protected Class<? extends Component> component;
     protected String tag;
-    protected Class<? extends Component> overriddenComponentType;
-    protected Class<? extends ComponentLoader> componentClassLoader;
+    protected Class<? extends Component> replacedComponent;
+    protected Class<? extends ComponentLoader> componentLoader;
 
     /**
-     * @param componentType component name
+     * @param component component name
      */
-    public ComponentRegistrationBuilder(Class<? extends Component> componentType) {
-        this.componentType = componentType;
+    public ComponentRegistrationBuilder(Class<? extends Component> component) {
+        this.component = component;
     }
 
     /**
-     * @param componentType component type
+     * @param component component class
      * @return builder instance
      */
-    public static ComponentRegistrationBuilder create(Class<? extends Component> componentType) {
-        return new ComponentRegistrationBuilder(componentType);
+    public static ComponentRegistrationBuilder create(Class<? extends Component> component) {
+        return new ComponentRegistrationBuilder(component);
     }
 
-    // todo rp javadoc
     /**
-     * Sets component class.
+     * Sets the component class that should be replaced.
      *
-     * @param componentType component class
+     * @param component component class to replace
      * @return builder instance
      */
-    public ComponentRegistrationBuilder overrideComponent(Class<? extends Component> componentType) {
-        overriddenComponentType = componentType;
+    public ComponentRegistrationBuilder replaceComponent(Class<? extends Component> component) {
+        replacedComponent = component;
         return this;
     }
 
     /**
      * Sets component loader class.
      *
-     * @param tag                  component name in the screen descriptor
-     * @param componentClassLoader component loader class
+     * @param tag             component name in the screen descriptor
+     * @param componentLoader component loader class
      * @return builder instance
      */
     public ComponentRegistrationBuilder withComponentLoader(String tag,
-                                                            Class<? extends ComponentLoader> componentClassLoader) {
+                                                            Class<? extends ComponentLoader> componentLoader) {
         this.tag = tag;
-        this.componentClassLoader = componentClassLoader;
+        this.componentLoader = componentLoader;
         return this;
     }
 
@@ -93,6 +92,6 @@ public class ComponentRegistrationBuilder {
      * @return instance of registration object
      */
     public ComponentRegistration build() {
-        return new ComponentRegistrationImpl(componentType, tag, overriddenComponentType, componentClassLoader);
+        return new ComponentRegistrationImpl(component, tag, replacedComponent, componentLoader);
     }
 }

@@ -27,16 +27,16 @@ public class ComponentRegistrationImpl implements ComponentRegistration {
 
     protected final Class<? extends Component> component;
     protected final String tag;
-    protected final Class<? extends Component> overriddenComponent;
+    protected final Class<? extends Component> replacedComponent;
     protected final Class<? extends ComponentLoader> componentLoader;
 
     public ComponentRegistrationImpl(Class<? extends Component> component,
                                      @Nullable String tag,
-                                     @Nullable Class<? extends Component> overriddenComponent,
+                                     @Nullable Class<? extends Component> replacedComponent,
                                      @Nullable Class<? extends ComponentLoader> componentLoader) {
         this.component = component;
         this.tag = tag;
-        this.overriddenComponent = overriddenComponent;
+        this.replacedComponent = replacedComponent;
         this.componentLoader = componentLoader;
     }
 
@@ -53,8 +53,8 @@ public class ComponentRegistrationImpl implements ComponentRegistration {
 
     @Nullable
     @Override
-    public Class<? extends Component> getOverriddenComponent() {
-        return overriddenComponent;
+    public Class<? extends Component> getReplacedComponent() {
+        return replacedComponent;
     }
 
     @Nullable
@@ -82,12 +82,12 @@ public class ComponentRegistrationImpl implements ComponentRegistration {
 
     @Override
     public String toString() {
-        String overriddenComponent = getOverriddenComponent() == null ? "null" : getOverriddenComponent().getName();
+        String replacedComponent = getReplacedComponent() == null ? "null" : getReplacedComponent().getName();
         String componentLoaderClass = getComponentLoader() == null ? "null" : getComponentLoader().getName();
 
         return "{\"component\": \"" + component + "\", "
                 + "\"tag\": \"" + tag + "\", "
-                + "\"overriddenComponent\": \"" + overriddenComponent + "\", "
+                + "\"replacedComponent\": \"" + replacedComponent + "\", "
                 + "\"componentLoader\": \"" + componentLoaderClass + "\"}";
     }
 }

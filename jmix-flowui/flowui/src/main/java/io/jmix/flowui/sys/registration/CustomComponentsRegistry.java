@@ -41,9 +41,9 @@ import java.util.List;
  * public class ComponentConfiguration {
  *
  *     &#64;Bean
- *     public ComponentRegistration extButton() {
+ *     public ComponentRegistration extJmixButton() {
  *         return ComponentRegistrationBuilder.create(ExtJmixButton.class)
- *                 .overrideComponent(JmixButton.class)
+ *                 .replaceComponent(JmixButton.class)
  *                 .withComponentLoader("button", ExtButtonLoader.class)
  *                 .build();
  *     }
@@ -83,28 +83,28 @@ public class CustomComponentsRegistry {
 
     @SuppressWarnings("rawtypes")
     protected void registerComponent(ComponentRegistration registration) {
-        Class<? extends Component> componentType = registration.getComponent();
-        Class<? extends Component> overriddenComponent = registration.getOverriddenComponent();
-        Class<? extends ComponentLoader> componentLoaderClass = registration.getComponentLoader();
+        Class<? extends Component> component = registration.getComponent();
+        Class<? extends Component> replacedComponent = registration.getReplacedComponent();
+        Class<? extends ComponentLoader> componentLoader = registration.getComponentLoader();
         String tag = registration.getTag() != null ? registration.getTag().trim() : null;
 
-        if (componentLoaderClass == null
+        if (componentLoader == null
                 && Strings.isNullOrEmpty(tag)
-                && overriddenComponent == null) {
+                && replacedComponent == null) {
             throw new IllegalArgumentException(String.format("You have to provide at least overridden component class"
-                    + " or tag with componentLoader class for custom component %s / <%s>", componentType, tag));
+                    + " or tag with componentLoader class for custom component %s / <%s>", component, tag));
         }
 
-        if (overriddenComponent != null) {
-            log.trace("Register component {} class {}", componentType, overriddenComponent.getCanonicalName());
+        if (replacedComponent != null) {
+            log.trace("Register component {} class {}", component, replacedComponent.getCanonicalName());
 
-            uiComponents.register(componentType, overriddenComponent);
+            uiComponents.replaceComponent(component, replacedComponent);
         }
 
-        if (componentLoaderClass != null && !Strings.isNullOrEmpty(tag)) {
-            log.trace("Register tag {} loader {}", tag, componentLoaderClass.getCanonicalName());
+        if (componentLoader != null && !Strings.isNullOrEmpty(tag)) {
+            log.trace("Register tag {} loader {}", tag, componentLoader.getCanonicalName());
 
-            loaderConfig.registerLoader(tag, componentLoaderClass);
+            loaderConfig.registerLoader(tag, componentLoader);
         }
     }
 }

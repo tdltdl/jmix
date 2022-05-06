@@ -28,9 +28,9 @@ import javax.annotation.Nullable;
  * public class ComponentConfiguration {
  *
  *     &#64;Bean
- *     public ComponentRegistration extButton() {
+ *     public ComponentRegistration extJmixButton() {
  *         return ComponentRegistrationBuilder.create(ExtJmixButton.class)
- *                 .overrideComponent(JmixButton.class)
+ *                 .replaceComponent(JmixButton.class)
  *                 .withComponentLoader("button", ExtButtonLoader.class)
  *                 .build();
  *     }
@@ -57,7 +57,7 @@ public interface ComponentRegistration {
      * @return component class that should be replaced by {@link #getComponent()} or {@code null} if not set
      */
     @Nullable
-    <T extends Component> Class<T> getOverriddenComponent();
+    <T extends Component> Class<T> getReplacedComponent();
 
     /**
      * @return component loader class or {@code null} if not set

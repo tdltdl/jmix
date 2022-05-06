@@ -45,7 +45,7 @@ public class UiComponentsImpl implements UiComponents {
     }
 
     protected Map<Class<? extends Component>, Class<? extends Component>> classes = new ConcurrentHashMap<>();
-    protected Map<Class<? extends Component>, Class<? extends Component>> overriddenClasses = new ConcurrentHashMap<>();
+    protected Map<Class<? extends Component>, Class<? extends Component>> replacedClasses = new ConcurrentHashMap<>();
 
     {
         classes.put(Grid.class, JmixGrid.class);
@@ -59,15 +59,15 @@ public class UiComponentsImpl implements UiComponents {
         classes.put(GridContextMenu.class, JmixGridContextMenu.class);
         classes.put(TreeGrid.class, JmixTreeGrid.class);
 
-        overriddenClasses.put(JmixGrid.class, Grid.class);
-        overriddenClasses.put(JmixTreeGrid.class, TreeGrid.class);
-        overriddenClasses.put(JmixGridContextMenu.class, GridContextMenu.class);
-        overriddenClasses.put(JmixButton.class, Button.class);
-        overriddenClasses.put(JmixComboBox.class, ComboBox.class);
-        overriddenClasses.put(TypedTextField.class, TextField.class);
-        overriddenClasses.put(TypedTimePicker.class, TimePicker.class);
-        overriddenClasses.put(TypedDateTimePicker.class, DateTimePicker.class);
-        overriddenClasses.put(TypedDatePicker.class, DatePicker.class);
+        replacedClasses.put(JmixGrid.class, Grid.class);
+        replacedClasses.put(JmixTreeGrid.class, TreeGrid.class);
+        replacedClasses.put(JmixGridContextMenu.class, GridContextMenu.class);
+        replacedClasses.put(JmixButton.class, Button.class);
+        replacedClasses.put(JmixComboBox.class, ComboBox.class);
+        replacedClasses.put(TypedTextField.class, TextField.class);
+        replacedClasses.put(TypedTimePicker.class, TimePicker.class);
+        replacedClasses.put(TypedDateTimePicker.class, DateTimePicker.class);
+        replacedClasses.put(TypedDatePicker.class, DatePicker.class);
     }
 
     @SuppressWarnings("unchecked")
@@ -81,8 +81,8 @@ public class UiComponentsImpl implements UiComponents {
             return (T) Instantiator.get(UI.getCurrent()).getOrCreate(actualType);
         }
 
-        if (overriddenClasses.containsKey(type)) {
-            Class<? extends Component> overridden = overriddenClasses.get(type);
+        if (replacedClasses.containsKey(type)) {
+            Class<? extends Component> overridden = replacedClasses.get(type);
             Class<? extends Component> actualType = classes.get(overridden);
 
             log.trace("Creating {} as it replaces overriding of {} by {} component",
@@ -112,11 +112,11 @@ public class UiComponentsImpl implements UiComponents {
         return component;
     }
 
-    public void register(Class<? extends Component> component, Class<? extends Component> overriddenComponent) {
-        if (overriddenClasses.containsKey(overriddenComponent)) {
-            overriddenComponent = overriddenClasses.get(overriddenComponent);
+    public void replaceComponent(Class<? extends Component> component, Class<? extends Component> replacedComponent) {
+        if (replacedClasses.containsKey(replacedComponent)) {
+            replacedComponent = replacedClasses.get(replacedComponent);
         }
-        classes.put(overriddenComponent, component);
-        overriddenClasses.put(component, overriddenComponent);
+        classes.put(replacedComponent, component);
+        replacedClasses.put(component, replacedComponent);
     }
 }
