@@ -161,11 +161,20 @@ public class UiControllerDependencyInjector {
             if (hasActions.isPresent()) {
                 return hasActions.get().getAction(elements[elements.length - 1]);
             }
+        } else if (MessageBundle.class == type) {
+            return createMessageBundle(controller);
         }
 
         // TODO: gg, handle other types
 
         return null;
+    }
+
+    protected MessageBundle createMessageBundle(Screen controller) {
+        MessageBundle messageBundle = applicationContext.getBean(MessageBundle.class);
+        String packageName = UiControllerUtils.getPackage(controller.getClass());
+        messageBundle.setMessageGroup(packageName);
+        return messageBundle;
     }
 
     protected void assignValue(AnnotatedElement element, Object value, Screen controller) {

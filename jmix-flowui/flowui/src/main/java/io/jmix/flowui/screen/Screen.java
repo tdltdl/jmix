@@ -8,6 +8,7 @@ import com.vaadin.flow.shared.Registration;
 import io.jmix.flowui.component.layout.ScreenLayout;
 import io.jmix.flowui.model.ScreenData;
 import io.jmix.flowui.sys.ScreenSupport;
+import io.jmix.flowui.sys.ScreensHelper;
 import io.jmix.flowui.util.OperationResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -52,6 +53,8 @@ public class Screen extends Composite<ScreenLayout>
 
     @Override
     public void afterNavigation(AfterNavigationEvent event) {
+        updatePageTitle();
+
         fireEvent(new AfterShowEvent(this));
     }
 
@@ -118,6 +121,12 @@ public class Screen extends Composite<ScreenLayout>
 
     protected void setScreenActions(ScreenActions screenActions) {
         this.screenActions = screenActions;
+    }
+
+    protected void updatePageTitle() {
+        String pageTitle = applicationContext.getBean(ScreensHelper.class)
+                .getLocalizedPageTitle(this);
+        getUI().ifPresent(ui -> ui.getPage().setTitle(pageTitle));
     }
 
     @Override
