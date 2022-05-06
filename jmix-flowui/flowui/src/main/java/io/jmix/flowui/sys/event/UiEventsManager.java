@@ -81,7 +81,7 @@ public class UiEventsManager {
     }
 
     /**
-     * Removes all listeners that have definition in the given component.
+     * Removes all application listeners that have definition in the given component.
      *
      * @param component component
      */
@@ -92,39 +92,25 @@ public class UiEventsManager {
     }
 
     /**
-     * Removes all listeners.
+     * Removes all application listeners for all components.
      */
-    public void removeAllListeners() {
+    public void removeAllApplicationListeners() {
         listeners.clear();
     }
 
     /**
-     * Publishes event only in the current UI.
+     * Publishes application event on provided UIs. Empty collection of UIs means iterating all existing UIs in the
+     * current session.
      *
-     * @param event application event
+     * @param uis   collection of UIs
+     * @param event event to publish
      */
-    public void publishInCurrentUI(ApplicationEvent event) {
+    public void publish(Collection<UI> uis, ApplicationEvent event) {
         Object source = event.getSource();
         Class<?> sourceType = (source != null ? source.getClass() : null);
 
         ResolvableType type = resolveDefaultEventType(event);
-        for (ApplicationListener<?> listener : retrieveApplicationListeners(
-                Collections.singletonList(UI.getCurrent()), type, sourceType)) {
-            invokeListener(listener, event);
-        }
-    }
-
-    /**
-     * Publishes event in all UIs in the current session.
-     *
-     * @param event application event
-     */
-    public void publish(ApplicationEvent event) {
-        Object source = event.getSource();
-        Class<?> sourceType = (source != null ? source.getClass() : null);
-
-        ResolvableType type = resolveDefaultEventType(event);
-        for (ApplicationListener<?> listener : retrieveApplicationListeners(type, sourceType)) {
+        for (ApplicationListener<?> listener : retrieveApplicationListeners(uis, type, sourceType)) {
             invokeListener(listener, event);
         }
     }
@@ -149,6 +135,15 @@ public class UiEventsManager {
         return ResolvableType.forInstance(event);
     }
 
+    /**
+     * Retrieves application listeners from UIs that support provided event type. Empty collection of UIs means
+     * iterating all existing UIs in the current session.
+     *
+     * @param uis        collection of UIs
+     * @param eventType  type of event
+     * @param sourceType type of source
+     * @return collection of application listeners that supports provided event type
+     */
     protected Collection<ApplicationListener<?>> retrieveApplicationListeners(Collection<UI> uis,
                                                                               ResolvableType eventType,
                                                                               @Nullable Class<?> sourceType) {
@@ -156,19 +151,10 @@ public class UiEventsManager {
 
         for (ComponentListeners componentListeners : listeners) {
             UI ui = componentListeners.getComponent().getUI().orElse(null);
-            if (ui != null && uis.contains(ui)) {
+            if (uis.isEmpty()
+                    || (ui != null && uis.contains(ui))) {
                 filtered.addAll(filterComponentListeners(componentListeners, eventType, sourceType));
             }
-        }
-        return filtered;
-    }
-
-    protected Collection<ApplicationListener<?>> retrieveApplicationListeners(ResolvableType eventType,
-                                                                              @Nullable Class<?> sourceType) {
-        List<ApplicationListener<?>> filtered = new ArrayList<>();
-
-        for (ComponentListeners componentListeners : listeners) {
-            filtered.addAll(filterComponentListeners(componentListeners, eventType, sourceType));
         }
         return filtered;
     }

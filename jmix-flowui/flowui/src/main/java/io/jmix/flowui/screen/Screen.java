@@ -65,14 +65,17 @@ public class Screen extends Composite<ScreenLayout>
     public void beforeLeave(BeforeLeaveEvent event) {
         if (!event.isPostponed()) {
             unregisterBackNavigation();
+            removeApplicationListeners();
         }
-
-        getApplicationContext().getBean(UiEventsManager.class).removeApplicationListeners(this);
     }
 
     protected void unregisterBackNavigation() {
         ScreenSupport screenSupport = getScreenSupport();
         screenSupport.unregisterBackNavigation(this);
+    }
+
+    protected void removeApplicationListeners() {
+        getApplicationContext().getBean(UiEventsManager.class).removeApplicationListeners(this);
     }
 
     public OperationResult closeWithDefaultAction() {

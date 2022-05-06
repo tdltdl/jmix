@@ -16,6 +16,7 @@
 
 package io.jmix.flowui;
 
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.page.AppShellConfigurator;
 import com.vaadin.flow.component.page.Push;
@@ -27,6 +28,9 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
+
+import java.util.Collection;
+import java.util.Collections;
 
 /**
  * The class fires application events that should be handled in the components (e.g. Screen). To enable handling
@@ -46,7 +50,7 @@ import org.springframework.stereotype.Component;
  *        // configuration
  *     }
  * </pre>
- * Note that {@link Notification} uses current UI to show the notification. If application listeners use notifications
+ * Note that {@link Notification} uses current UI to show the notification. If application listeners use notifications,
  * current UI may display them all.
  */
 @Component("flowui_UiEventPublisher")
@@ -60,28 +64,27 @@ public class UiEventPublisher {
     }
 
     /**
-     * Publishes event only in the current UI.
+     * Publishes event only on the current UI.
      *
      * @param event application event
      */
-    public void publishInCurrentUI(ApplicationEvent event) {
-        VaadinSession vaadinSession = VaadinSession.getCurrent();
-        if (vaadinSession != null) {
-            applicationContext.getBean(UiEventsManager.class).publishInCurrentUI(event);
-        } else {
-            throw new IllegalStateException("Event cannot be sent since there is no active Session instance");
-        }
+    public void publishEventOnCurrentUI(ApplicationEvent event) {
+        publish(Collections.singletonList(UI.getCurrent()), event);
     }
 
     /**
-     * Publishes event in all UIs in the current session.
+     * Publishes event on all UIs in the current session.
      *
      * @param event application event
      */
     public void publishEvent(ApplicationEvent event) {
+        publish(Collections.emptyList(), event);
+    }
+
+    protected void publish(Collection<UI> uis, ApplicationEvent event) {
         VaadinSession vaadinSession = VaadinSession.getCurrent();
         if (vaadinSession != null) {
-            applicationContext.getBean(UiEventsManager.class).publish(event);
+            applicationContext.getBean(UiEventsManager.class).publish(uis, event);
         } else {
             throw new IllegalStateException("Event cannot be sent since there is no active Session instance");
         }
