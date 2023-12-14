@@ -185,8 +185,9 @@ public class MySynchronizingOidcUserMapper extends SynchronizingOidcUserMapper<U
 
     public MySynchronizingOidcUserMapper(UnconstrainedDataManager dataManager,
                                          UserRepository userRepository,
-                                         ClaimsRolesMapper claimsRolesMapper) {
-        super(dataManager, userRepository, claimsRolesMapper);
+                                          ClaimsRolesMapper claimsRolesMapper, 
+                                          RoleGrantedAuthorityUtils roleGrantedAuthorityUtils) {
+        super(dataManager, userRepository, claimsRolesMapper, roleGrantedAuthorityUtils);
 
         //store role assignments in the database (false by default)
         setSynchronizeRoleAssignments(true);
